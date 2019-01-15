@@ -4,8 +4,10 @@ package Controllers;
 import Models.BD.PersonImp;
 import Models.BD.UsersImp;
 import Models.User;
+import Views.Desktop;
 import Views.Insert;
 import Views.Login;
+import Views.Static.Effects;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -41,6 +43,8 @@ public class LoginController {
             }
         });
         
+        Effects.exit(this.login.getBtnClose());
+        Effects.minimize(this.login.getBtnMinimize(), this.login);
     }
 
     /*
@@ -62,12 +66,18 @@ public class LoginController {
         if (UsersList.isEmpty()){
             JOptionPane.showMessageDialog(null, "Incorrect User or Password");
             
-        } else {
-            JOptionPane.showMessageDialog(null, UsersList.get(0));
             
-            InsertController insert = new InsertController(new PersonImp(), new Insert());
-            insert.Init();
-            insert.InitInsert();
+        } else {
+            
+            
+            
+            user = (UsersImp) UsersList.get(0);
+            
+            JOptionPane.showMessageDialog(null, "YOU HAS BEEN LOGIN AS: "+user.getName());
+            
+            DesktopController desktop = new DesktopController(new User(), new Desktop());
+            desktop.Init();
+            
             
         }
         

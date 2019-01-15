@@ -17,7 +17,7 @@ public class ResoucerManager {
 
     private static final String JDBC_DRIVER = "org.postgresql.Driver";
 
-    private static final String JDBC_URL = "jdbc:postgresql://127.0.0.1:5432/MVC";
+    private static final String JDBC_URL = "jdbc:postgresql://192.168.1.12:5432/MVC";
     private static final String JDBC_USER = "MrRainx";
     
     private static final String JDBC_PASSWORD = "31139121cD";
@@ -76,8 +76,6 @@ public class ResoucerManager {
             conn = getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery(Query);
-            
-            System.out.println("-->"+Query);
             
             conn.close();
             return rs;

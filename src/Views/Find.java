@@ -10,7 +10,7 @@ import javax.swing.JTextField;
  *
  * @author MrRainx
  */
-public class Find extends javax.swing.JFrame {
+public class Find extends javax.swing.JInternalFrame {
 
 
     public Find() {
