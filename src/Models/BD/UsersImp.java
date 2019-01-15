@@ -125,9 +125,7 @@ public class UsersImp extends User implements UserDAO {
                 user.setPhoto(foto);
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(UsersImp.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (SQLException | IOException ex) {
             Logger.getLogger(UsersImp.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;

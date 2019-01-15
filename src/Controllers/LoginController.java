@@ -61,6 +61,8 @@ public class LoginController {
         
         user.setPassword(this.login.getTxtPassword().getText());
         
+        
+        
         List<User>UsersList = user.SelectOne();
         
         if (UsersList.isEmpty()){
@@ -70,12 +72,14 @@ public class LoginController {
         } else {
             
             
+            user.setIdUser(UsersList.get(0).getIdUser());
+            user.setName(UsersList.get(0).getName());
             
-            user = (UsersImp) UsersList.get(0);
+            System.out.println("--->"+user);
             
-            JOptionPane.showMessageDialog(null, "YOU HAS BEEN LOGIN AS: "+user.getName());
+            JOptionPane.showMessageDialog(null, "YOU HAS BEEN LOGIN AS: "+UsersList.get(0).getName());
             
-            DesktopController desktop = new DesktopController(new User(), new Desktop());
+            DesktopController desktop = new DesktopController(user, new Desktop());
             desktop.Init();
             
             
