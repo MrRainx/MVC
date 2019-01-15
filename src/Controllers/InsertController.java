@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import Models.BD.PersonImp;
-import Views.Find;
-import Views.Insert;
+import Views.Persons.Find;
+import Views.Persons.Insert;
 
 /**
  *

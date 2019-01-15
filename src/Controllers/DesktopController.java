@@ -5,15 +5,19 @@
  */
 package Controllers;
 
+import Models.BD.UsersImp;
 import Models.User;
 import Views.Desktop;
+import Views.Users.UsersView;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
  * @author MrRainx
  */
 public class DesktopController {
-    
+
     private User user;
     private Desktop desktop;
 
@@ -24,31 +28,31 @@ public class DesktopController {
 
     public DesktopController() {
     }
-    
-    
+
     /*
         INIT
-    */
-    
-    public void Init(){
+     */
+    public void Init() {
         this.desktop.setVisible(true);
+        this.desktop.getBtnUser().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                btnUserOnMouseClicked(e);
+            }
+        });
     }
-    
-    
-    
+
     /*
         SUPPORT METHODS
-    */
-    
-    
-    
-    
-    
-    /*
+     */
+ /*
         EVENTS
-    */
-    
-    
-    
-    
+     */
+    private void btnUserOnMouseClicked(MouseEvent e) {
+        
+        UsersController userList = new UsersController(new UsersImp(), new UsersView(), this.desktop);
+        userList.Init();
+        
+    }
+
 }

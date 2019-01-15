@@ -1,4 +1,4 @@
-package Views;
+package Views.Persons;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,7 +31,7 @@ public class Find extends javax.swing.JInternalFrame {
         tabPersons = new javax.swing.JTable();
         lbState = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         bgComponents.setBackground(new java.awt.Color(102, 102, 102));
         bgComponents.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "List", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N

@@ -5,7 +5,7 @@ import Models.BD.PersonImp;
 import Models.BD.UsersImp;
 import Models.User;
 import Views.Desktop;
-import Views.Insert;
+import Views.Persons.Insert;
 import Views.Login;
 import Views.Static.Effects;
 import java.awt.event.MouseAdapter;
@@ -81,8 +81,7 @@ public class LoginController {
             
             DesktopController desktop = new DesktopController(user, new Desktop());
             desktop.Init();
-            
-            
+
         }
         
         

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Views;
+package Views.Persons;
 
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
@@ -56,8 +56,6 @@ public class Insert extends javax.swing.JInternalFrame {
         comboSex = new javax.swing.JComboBox<>();
         txtSalary = new javax.swing.JFormattedTextField();
         txtQuota = new javax.swing.JFormattedTextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         bgComponents.setBackground(new java.awt.Color(102, 102, 102));
         bgComponents.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Person Form", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N

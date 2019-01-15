@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Models.BD.PersonImp;
 import Models.Person;
-import Views.Find;
-import Views.Insert;
+import Views.Persons.Find;
+import Views.Persons.Insert;
 
 /**
  *
@@ -42,7 +42,6 @@ public class FindController {
     public void Init() {
 
         this.find.setVisible(true);
-        this.find.setLocationRelativeTo(null);
 
         ModelT = (DefaultTableModel) this.find.getTabPersons().getModel();
         
@@ -95,7 +94,6 @@ public class FindController {
         Effects.colorChanger(this.find.getBtnEdit(), new Color(68, 98, 145), exitColor);
         Effects.colorChanger(this.find.getBtnDelete(), new Color(68, 98, 145), exitColor);
 
-        Effects.moveableFrame(this.find);
 
     }
 

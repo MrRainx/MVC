@@ -33,10 +33,10 @@ public class UsersImp extends User implements UserDAO {
         String INSERT = "INSERT INTO "
                 + " users(idusuario,username,password,nombre,foto)"
                 + " VALUES( "
-                + " " + getIdUser() + ""
-                + " '" + getUserName() + "'"
-                + " '" + getPassword() + "'"
-                + " '" + getName() + "'"
+                + " " + getIdUser() + ","
+                + " '" + getUserName() + "',"
+                + " '" + getPassword() + "',"
+                + " '" + getName() + "',"
                 + " '" + getPhoto() + "'"
                 + ")";
 
@@ -74,7 +74,8 @@ public class UsersImp extends User implements UserDAO {
     public List<User> SelectOne() {
         String SELECT = "SELECT  * "
                 + " FROM users "
-                + " WHERE username = '" + getUserName() + "'"
+                + " WHERE "
+                + " username = '" + getUserName() + "'"
                 + " AND "
                 + " password = '" + getPassword() + "'";
 
@@ -130,5 +131,12 @@ public class UsersImp extends User implements UserDAO {
         }
         return user;
     }
-
+    
+    
+    
+    public static void main(String[] args) {
+        UsersImp user = new UsersImp(1, "Diego", "3113", "Diego Condo", null);
+        user.Insert();
+    }
+    
 }

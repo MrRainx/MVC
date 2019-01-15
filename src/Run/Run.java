@@ -1,13 +1,7 @@
 package Run;
 
-import Controllers.FindController;
-import Controllers.InsertController;
 import Controllers.LoginController;
-import Models.BD.PersonImp;
 import Models.BD.UsersImp;
-import Views.Desktop;
-import Views.Find;
-import Views.Insert;
 import Views.Login;
 import javax.swing.UIManager;
 
