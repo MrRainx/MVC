@@ -58,9 +58,10 @@ public class UsersController {
      */
     
     private void btnAddUserOnMouseClicked(MouseEvent e){
+        this.view.setVisible(false);
         AddUserController addUser = new AddUserController(new UsersImp(), new AddUser(), this.desktop);
+        this.view.setVisible(true);
         addUser.Init();
-        this.view.dispose();
     }
     
 }

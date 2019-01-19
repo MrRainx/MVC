@@ -110,7 +110,7 @@ public class UsersView extends javax.swing.JInternalFrame {
 
         btnAccept.setBackground(new java.awt.Color(0, 102, 102));
         btnAccept.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnAccept.setForeground(new java.awt.Color(51, 51, 51));
+        btnAccept.setForeground(new java.awt.Color(255, 255, 255));
         btnAccept.setText("Accept");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -124,7 +124,7 @@ public class UsersView extends javax.swing.JInternalFrame {
 
         btnFind.setBackground(new java.awt.Color(0, 102, 102));
         btnFind.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnFind.setForeground(new java.awt.Color(51, 51, 51));
+        btnFind.setForeground(new java.awt.Color(255, 255, 255));
         btnFind.setText("Find");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -138,7 +138,7 @@ public class UsersView extends javax.swing.JInternalFrame {
 
         btnCancel.setBackground(new java.awt.Color(0, 102, 102));
         btnCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnCancel.setForeground(new java.awt.Color(51, 51, 51));
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("Cancel");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

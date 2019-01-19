@@ -3,16 +3,28 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="bgFile">
+      <Properties>
+        <Property name="defaultCloseOperation" type="int" value="2"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[623, 397]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[623, 397]"/>
+        </Property>
+        <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[623, 397]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="fileFinder" min="-2" max="-2" attributes="0"/>
+              <Component id="fileFinder" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="fileFinder" min="-2" max="-2" attributes="0"/>
+              <Component id="fileFinder" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -152,7 +164,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="2" gridY="7" gridWidth="7" gridHeight="7" fill="1" ipadX="0" ipadY="0" insetsTop="12" insetsLeft="24" insetsBottom="12" insetsRight="24" anchor="18" weightX="0.1" weightY="3.0"/>
+              <GridBagConstraints gridX="2" gridY="7" gridWidth="7" gridHeight="7" fill="1" ipadX="0" ipadY="0" insetsTop="12" insetsLeft="24" insetsBottom="12" insetsRight="24" anchor="10" weightX="0.0" weightY="1.9"/>
             </Constraint>
           </Constraints>
         </Component>

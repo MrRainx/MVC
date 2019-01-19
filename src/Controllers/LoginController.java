@@ -42,9 +42,17 @@ public class LoginController {
                 btnEnterOnMouseClicked(e);
             }
         });
+        /*
+        this.login.getTxtPassword().addCaretListener(e ->{
+            if (){
+                
+            }
+        });
+        */
         
         Effects.exit(this.login.getBtnClose());
         Effects.minimize(this.login.getBtnMinimize(), this.login);
+        Effects.moveableFrame(this.login);
     }
 
     /*
@@ -61,26 +69,23 @@ public class LoginController {
         
         user.setPassword(this.login.getTxtPassword().getText());
         
-        
-        
         List<User>UsersList = user.SelectOne();
         
         if (UsersList.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Incorrect User or Password");
             
+            JOptionPane.showMessageDialog(null, "Incorrect User or Password");
             
         } else {
             
-            
             user.setIdUser(UsersList.get(0).getIdUser());
             user.setName(UsersList.get(0).getName());
-            
-            System.out.println("--->"+user);
             
             JOptionPane.showMessageDialog(null, "YOU HAS BEEN LOGIN AS: "+UsersList.get(0).getName());
             
             DesktopController desktop = new DesktopController(user, new Desktop());
             desktop.Init();
+            
+            this.login.setVisible(false);
 
         }
         

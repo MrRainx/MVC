@@ -126,15 +126,20 @@ public class AddUser extends javax.swing.JInternalFrame {
         txtFilePath = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
 
+        bgFile.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        bgFile.setMaximumSize(new java.awt.Dimension(623, 397));
+        bgFile.setMinimumSize(new java.awt.Dimension(623, 397));
+        bgFile.setSize(new java.awt.Dimension(623, 397));
+
         javax.swing.GroupLayout bgFileLayout = new javax.swing.GroupLayout(bgFile.getContentPane());
         bgFile.getContentPane().setLayout(bgFileLayout);
         bgFileLayout.setHorizontalGroup(
             bgFileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fileFinder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(fileFinder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         bgFileLayout.setVerticalGroup(
             bgFileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fileFinder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(fileFinder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setClosable(true);
@@ -200,9 +205,7 @@ public class AddUser extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.gridheight = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 3.0;
+        gridBagConstraints.weighty = 1.9;
         gridBagConstraints.insets = new java.awt.Insets(12, 24, 12, 24);
         bgContainer.add(lbImage, gridBagConstraints);
 
