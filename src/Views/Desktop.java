@@ -103,7 +103,7 @@ public class Desktop extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgDesktop)
+            .addComponent(bgDesktop, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();

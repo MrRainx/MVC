@@ -7,7 +7,7 @@ import Models.User;
 import Views.Desktop;
 import Views.Persons.Insert;
 import Views.Login;
-import Views.Static.Effects;
+import Controllers.Libraries.Effects;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -58,6 +58,8 @@ public class LoginController {
     /*
         SUPPORT METHODS
      */
+
+
     
  
     /*

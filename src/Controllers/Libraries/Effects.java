@@ -1,4 +1,4 @@
-package Views.Static;
+package Controllers.Libraries;
 
 import Controllers.FindController;
 import java.awt.Color;
@@ -15,7 +15,7 @@ import javax.swing.JFrame;
  */
 public class Effects {
     
-    public static void colorChanger(JButton button, Color colorEnter, Color colorExit) {
+    public static void colorChanger(JButton button, Color colorEnter) {
         
         button.addMouseListener(new MouseAdapter() {
             @Override
@@ -25,7 +25,7 @@ public class Effects {
             
             @Override
             public void mouseExited(MouseEvent e) {
-                button.setBackground(colorExit);
+                button.setBackground(button.getBackground());
             }
             
         });

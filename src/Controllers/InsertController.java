@@ -1,6 +1,6 @@
 package Controllers;
 
-import Views.Static.Effects;
+import Controllers.Libraries.Effects;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -79,12 +79,9 @@ public class InsertController {
 
     private void InitEffects() {
 
-        Color exitColor = new Color(240, 240, 240);
-
-        this.view.getBtnInsert().setBackground(exitColor);
-        this.view.getBtnClear().setBackground(exitColor);
-        Effects.colorChanger(this.view.getBtnInsert(), new Color(68, 98, 145), exitColor);
-        Effects.colorChanger(this.view.getBtnClear(), new Color(68, 98, 145), exitColor);
+        Effects.colorChanger(this.view.getBtnInsert(), new Color(68, 98, 145));
+        Effects.colorChanger(this.view.getBtnClear(), new Color(68, 98, 145));
+        
     }
 
     /*

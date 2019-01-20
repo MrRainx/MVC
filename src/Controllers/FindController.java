@@ -1,6 +1,6 @@
 package Controllers;
 
-import Views.Static.Effects;
+import Controllers.Libraries.Effects;
 import java.awt.Color;
 
 import java.awt.event.KeyAdapter;
@@ -84,15 +84,9 @@ public class FindController {
 
     private void InitEffects() {
 
-        Color exitColor = new Color(240, 240, 240);
-
-        this.find.getBtnNew().setBackground(exitColor);
-        this.find.getBtnEdit().setBackground(exitColor);
-        this.find.getBtnDelete().setBackground(exitColor);
-
-        Effects.colorChanger(this.find.getBtnNew(), new Color(68, 98, 145), exitColor);
-        Effects.colorChanger(this.find.getBtnEdit(), new Color(68, 98, 145), exitColor);
-        Effects.colorChanger(this.find.getBtnDelete(), new Color(68, 98, 145), exitColor);
+        Effects.colorChanger(this.find.getBtnNew(), new Color(68, 98, 145));
+        Effects.colorChanger(this.find.getBtnEdit(), new Color(68, 98, 145));
+        Effects.colorChanger(this.find.getBtnDelete(), new Color(68, 98, 145));
 
 
     }

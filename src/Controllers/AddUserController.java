@@ -1,5 +1,6 @@
 package Controllers;
 
+import Controllers.Libraries.NewClass;
 import Models.BD.UsersImp;
 import Views.Desktop;
 import Views.Users.AddUser;
@@ -7,12 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,11 +63,8 @@ public class AddUserController {
 
         });
 
-        this.view.getFileFinder().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                FileChosseActionPerformance(e);
-            }
+        this.view.getFileFinder().addActionListener((ActionEvent e) -> {
+            FileChosseActionPerformance(e);
         });
 
     }
@@ -76,7 +72,12 @@ public class AddUserController {
     /*
         SUPPORT METHODS
      */
- /*
+    
+    
+    
+    
+    
+    /*
         EVENTS
      */
     private void btnAddOnMouseClicked(MouseEvent e) {
@@ -95,33 +96,18 @@ public class AddUserController {
         JFileChooser findFile = (JFileChooser) evt.getSource();
         String command = evt.getActionCommand();
         if (command.equals(JFileChooser.APPROVE_SELECTION)) {
-
-            FileInputStream input = null;
-            try {
-                
-                URI uri = findFile.getSelectedFile().toURI();
-                input = new FileInputStream(new File(uri));
-                ImageIcon photo = new ImageIcon(ImageIO.read(input));
-                input.close();
-                this.view.getLbImage().setIcon(photo);
-                
-                
-                
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(AddUserController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(AddUserController.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                try {
-                    input.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(AddUserController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-
+            
+            NewClass.ImgFromFileChosser(findFile, this.view.getLbImage());
+            
+            
         }else if (command.equals(JFileChooser.CANCEL_SELECTION)){
             this.view.getBgFile().dispose();
         }
     }
+    
+    
+    
+    
+    
 
 }
