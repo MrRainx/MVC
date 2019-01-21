@@ -1,6 +1,6 @@
 package Controllers;
 
-import Controllers.Libraries.NewClass;
+import Controllers.Libraries.ImageLibrarie;
 import Models.BD.UsersImp;
 import Views.Desktop;
 import Views.Users.AddUser;
@@ -16,9 +16,11 @@ import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -72,12 +74,7 @@ public class AddUserController {
     /*
         SUPPORT METHODS
      */
-    
-    
-    
-    
-    
-    /*
+ /*
         EVENTS
      */
     private void btnAddOnMouseClicked(MouseEvent e) {
@@ -88,7 +85,7 @@ public class AddUserController {
 
         this.view.getBgFile().setVisible(true);
         this.view.getBgFile().setLocationRelativeTo(this.desktop);
-        
+
     }
 
     private void FileChosseActionPerformance(ActionEvent evt) {
@@ -97,17 +94,23 @@ public class AddUserController {
         String command = evt.getActionCommand();
         if (command.equals(JFileChooser.APPROVE_SELECTION)) {
             
-            NewClass.ImgFromFileChosser(findFile, this.view.getLbImage());
+            
+            ImageIcon image = ImageLibrarie.JFCToImageIcon(findFile);
+            
+            if (image == null){
+                JOptionPane.showMessageDialog(this.desktop.getBgDesktop(), "NO ES UN ARCHIVO VALIDO");
+            } else {
+                ImageLibrarie.SetImageInLabel(image, this.view.getLbImage());
+                this.view.getTxtFilePath().setText(ImageLibrarie.getStringPathFromJFC(findFile));
+                this.view.getBgFile().dispose();
+                this.user.setPhoto(ImageLibrarie.getImgFileFromJFC(findFile));
+            }
             
             
-        }else if (command.equals(JFileChooser.CANCEL_SELECTION)){
+            
+        } else if (command.equals(JFileChooser.CANCEL_SELECTION)) {
             this.view.getBgFile().dispose();
         }
     }
-    
-    
-    
-    
-    
 
 }

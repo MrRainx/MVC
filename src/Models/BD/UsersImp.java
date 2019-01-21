@@ -3,6 +3,7 @@ package Models.BD;
 import Models.BD.DAO.UserDAO;
 import Models.User;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import javax.swing.ImageIcon;
  */
 public class UsersImp extends User implements UserDAO {
 
-    public UsersImp(int IdUser, String UserName, String Password, String Name, ImageIcon Photo) {
+    public UsersImp(int IdUser, String UserName, String Password, String Name, FileInputStream Photo) {
         super(IdUser, UserName, Password, Name, Photo);
     }
 
@@ -117,16 +118,12 @@ public class UsersImp extends User implements UserDAO {
             user.setName(rs.getString(4));
 
             if (rs.getBinaryStream(5) != null) {
-                InputStream photo = rs.getBinaryStream(5);
-
-                BufferedImage image = ImageIO.read(photo);
-
-                ImageIcon foto = new ImageIcon(image);
-
-                user.setPhoto(foto);
+                
+                
+                
             }
 
-        } catch (SQLException | IOException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(UsersImp.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
