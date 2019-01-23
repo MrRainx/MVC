@@ -1,7 +1,9 @@
 package Models.BD;
 
 import Models.BD.DAO.UserDAO;
+import Models.BD.ResoucerManager;
 import Models.User;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,7 +23,7 @@ import javax.swing.ImageIcon;
  */
 public class UsersImp extends User implements UserDAO {
 
-    public UsersImp(int IdUser, String UserName, String Password, String Name, FileInputStream Photo) {
+    public UsersImp(int IdUser, String UserName, String Password, String Name, Image Photo) {
         super(IdUser, UserName, Password, Name, Photo);
     }
 
@@ -80,8 +82,10 @@ public class UsersImp extends User implements UserDAO {
                 + " AND "
                 + " password = '" + getPassword() + "'";
 
+        System.out.println("--->"+SELECT);
+        
         List<User> List = new ArrayList<>();
-
+        
         try {
 
             ResultSet rs = ResoucerManager.Query(SELECT);
@@ -132,8 +136,13 @@ public class UsersImp extends User implements UserDAO {
     
     
     public static void main(String[] args) {
-        UsersImp user = new UsersImp(1, "Diego", "3113", "Diego Condo", null);
-        user.Insert();
+        
+        UsersImp imp = new UsersImp();
+        
+        for (User string : imp.SelectAll()) {
+            System.out.println("--->"+string.getUserName());
+        }
+        
     }
     
 }

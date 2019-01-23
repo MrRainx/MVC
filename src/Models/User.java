@@ -1,8 +1,8 @@
 package Models;
 
+import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.Serializable;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -14,9 +14,9 @@ public class User implements Serializable{
     private String UserName;
     private String Password;
     private String Name;
-    private FileInputStream Photo;
+    private Image Photo;
 
-    public User(int IdUser, String UserName, String Password, String Name, FileInputStream Photo) {
+    public User(int IdUser, String UserName, String Password, String Name, Image Photo) {
         this.IdUser = IdUser;
         this.UserName = UserName;
         this.Password = Password;
@@ -59,11 +59,11 @@ public class User implements Serializable{
         this.Name = Name;
     }
 
-    public FileInputStream getPhoto() {
+    public Image getPhoto() {
         return Photo;
     }
 
-    public void setPhoto(FileInputStream Photo) {
+    public void setPhoto(Image Photo) {
         this.Photo = Photo;
     }
 
