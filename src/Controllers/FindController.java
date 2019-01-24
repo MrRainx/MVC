@@ -14,8 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Models.BD.PersonImp;
 import Models.Person;
+import Views.Desktop;
 import Views.Persons.Find;
 import Views.Persons.Insert;
+import javax.swing.JLayeredPane;
 
 /**
  *
@@ -24,13 +26,17 @@ import Views.Persons.Insert;
 public class FindController {
 
     private PersonImp person;
-    private Find find;
+    private Find view;
+    
+    private Desktop desktop;
+    
 
     private DefaultTableModel ModelT;
 
-    public FindController(PersonImp person, Find fin) {
+    public FindController(PersonImp person, Find fin, Desktop desktop) {
         this.person = person;
-        this.find = fin;
+        this.view = fin;
+        this.desktop = desktop;
     }
 
     public FindController() {
@@ -41,11 +47,17 @@ public class FindController {
      */
     public void Init() {
 
-        this.find.setVisible(true);
-
-        ModelT = (DefaultTableModel) this.find.getTabPersons().getModel();
+        this.view.setVisible(true);
         
-        this.find.getTxtFind().addKeyListener(new KeyAdapter() {
+        
+        this.view.show();
+        this.desktop.getBgDesktop().remove(this.view);
+        this.desktop.getBgDesktop().add(this.view, JLayeredPane.DEFAULT_LAYER);
+        
+        
+        ModelT = (DefaultTableModel) this.view.getTabPersons().getModel();
+        
+        this.view.getTxtFind().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 TxtOnKeyRelessed(e);
@@ -53,7 +65,7 @@ public class FindController {
 
         });
 
-        this.find.getBtnNew().addMouseListener(new MouseAdapter() {
+        this.view.getBtnNew().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 btnNewOnMaouseClicked(e);
@@ -61,7 +73,7 @@ public class FindController {
 
         });
 
-        this.find.getBtnEdit().addMouseListener(new MouseAdapter() {
+        this.view.getBtnEdit().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 btnEditMouseClicked(e);
@@ -69,7 +81,7 @@ public class FindController {
 
         });
 
-        this.find.getBtnDelete().addMouseListener(new MouseAdapter() {
+        this.view.getBtnDelete().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 btnDeleteOnMouseClicked(e);
@@ -84,9 +96,9 @@ public class FindController {
 
     private void InitEffects() {
 
-        Effects.colorChanger(this.find.getBtnNew(), new Color(68, 98, 145));
-        Effects.colorChanger(this.find.getBtnEdit(), new Color(68, 98, 145));
-        Effects.colorChanger(this.find.getBtnDelete(), new Color(68, 98, 145));
+        Effects.colorChanger(this.view.getBtnNew(), new Color(68, 98, 145));
+        Effects.colorChanger(this.view.getBtnEdit(), new Color(68, 98, 145));
+        Effects.colorChanger(this.view.getBtnDelete(), new Color(68, 98, 145));
 
 
     }
@@ -101,7 +113,7 @@ public class FindController {
         PersonList.forEach((obj) -> {
             InsertRow(obj);
 
-            this.find.getLbState().setText(PersonList.size() + " rows");
+            this.view.getLbState().setText(PersonList.size() + " rows");
 
         });
 
@@ -127,17 +139,17 @@ public class FindController {
         PersonList.forEach((obj) -> {
             InsertRow(obj);
         });
-        this.find.getLbState().setText(PersonList.size() + " rows");
+        this.view.getLbState().setText(PersonList.size() + " rows");
 
     }
 
     private void ResetTable() {
 
-        int a = this.find.getTabPersons().getRowCount() - 1;
+        int a = this.view.getTabPersons().getRowCount() - 1;
 
         try {
             for (int i = a; i >= 0; i++) {
-                ModelT.removeRow(this.find.getTabPersons().getRowCount() - 1);
+                ModelT.removeRow(this.view.getTabPersons().getRowCount() - 1);
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -149,14 +161,14 @@ public class FindController {
     private PersonImp createPersonFromTable(int row) {
 
         return new PersonImp(
-                (String) this.find.getTabPersons().getValueAt(row, 0),
-                (String) this.find.getTabPersons().getValueAt(row, 1),
-                (String) this.find.getTabPersons().getValueAt(row, 2),
-                (LocalDate) this.find.getTabPersons().getValueAt(row, 3),
-                (String) this.find.getTabPersons().getValueAt(row, 4),
-                (String) this.find.getTabPersons().getValueAt(row, 5),
-                (Double) this.find.getTabPersons().getValueAt(row, 6),
-                (Integer) this.find.getTabPersons().getValueAt(row, 7)
+                (String) this.view.getTabPersons().getValueAt(row, 0),
+                (String) this.view.getTabPersons().getValueAt(row, 1),
+                (String) this.view.getTabPersons().getValueAt(row, 2),
+                (LocalDate) this.view.getTabPersons().getValueAt(row, 3),
+                (String) this.view.getTabPersons().getValueAt(row, 4),
+                (String) this.view.getTabPersons().getValueAt(row, 5),
+                (Double) this.view.getTabPersons().getValueAt(row, 6),
+                (Integer) this.view.getTabPersons().getValueAt(row, 7)
         );
 
     }
@@ -166,12 +178,15 @@ public class FindController {
      */
     private void TxtOnKeyRelessed(KeyEvent e) {
         ResetTable();
-        LoadOneToTable(this.find.getTxtFind().getText());
+        LoadOneToTable(this.view.getTxtFind().getText());
+        
+        System.out.println("--->"+e.getKeyCode());
+        
 
     }
 
     private void btnNewOnMaouseClicked(MouseEvent e) {
-        this.find.setVisible(false);
+        this.view.setVisible(false);
 
         InsertController insert = new InsertController(new PersonImp(), new Insert());
         insert.Init();
@@ -180,11 +195,11 @@ public class FindController {
 
     private void btnEditMouseClicked(MouseEvent e) {
 
-        int row = this.find.getTabPersons().getSelectedRow();
+        int row = this.view.getTabPersons().getSelectedRow();
 
         if (row != -1) {
 
-            this.find.dispose();
+            this.view.dispose();
 
             InsertController update = new InsertController(createPersonFromTable(row), new Insert());
             
@@ -200,7 +215,7 @@ public class FindController {
 
     private void btnDeleteOnMouseClicked(MouseEvent e) {
 
-        int row = this.find.getTabPersons().getSelectedRow();
+        int row = this.view.getTabPersons().getSelectedRow();
 
         if (row != -1) {
 

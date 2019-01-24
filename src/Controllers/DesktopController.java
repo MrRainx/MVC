@@ -5,9 +5,11 @@
  */
 package Controllers;
 
+import Models.BD.PersonImp;
 import Models.BD.UsersImp;
 import Models.User;
 import Views.Desktop;
+import Views.Persons.Find;
 import Views.Users.UsersView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -41,6 +43,14 @@ public class DesktopController {
                 btnUserOnMouseClicked(e);
             }
         });
+        
+        this.desktop.getBtnPersons().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                btnPersonOnMouseClicked(e);
+            }
+            
+        });
     }
 
     /*
@@ -54,6 +64,13 @@ public class DesktopController {
         UsersController userList = new UsersController(new UsersImp(), new UsersView(), this.desktop);
         userList.Init();
         
+    }
+    
+    private void btnPersonOnMouseClicked(MouseEvent e){
+        FindController fin = new FindController(new PersonImp(), new Find(), this.desktop);
+        
+        fin.Init();
+                
     }
 
 }

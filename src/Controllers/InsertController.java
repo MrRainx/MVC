@@ -122,10 +122,10 @@ public class InsertController {
             this.view.setVisible(false);
 
             JOptionPane.showMessageDialog(null, "PERSON HAS BEEN UPDATED");
-
+/*
             FindController find = new FindController(new PersonImp(), new Find());
             find.Init();
-
+*/
         } else {
             
             CreatePersonFromView();
@@ -135,10 +135,12 @@ public class InsertController {
             this.view.setVisible(false);
 
             JOptionPane.showMessageDialog(null, "PERSON HAS BEEN ADDED");
-
+            
+            /*
+            
             FindController find = new FindController(new PersonImp(), new Find());
             find.Init();
-
+*/
         }
 
     }
