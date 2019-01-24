@@ -1,5 +1,6 @@
 package Models.BD;
 
+import Controllers.Libraries.ImgLib;
 import Models.BD.DAO.UserDAO;
 import Models.BD.ResoucerManager;
 import Models.User;
@@ -40,7 +41,7 @@ public class UsersImp extends User implements UserDAO {
                 + " '" + getUserName() + "',"
                 + " '" + getPassword() + "',"
                 + " '" + getName() + "',"
-                + " '" + getPhoto() + "'"
+                + " '" + ImgLib.setImageInBase64(getPhoto()) + "'"
                 + ")";
 
         return ResoucerManager.Statement(INSERT) == null;
