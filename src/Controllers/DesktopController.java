@@ -34,6 +34,7 @@ public class DesktopController {
      */
     public void Init() {
         this.desktop.setVisible(true);
+        this.desktop.setLocationRelativeTo(null);
         this.desktop.getBtnUser().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

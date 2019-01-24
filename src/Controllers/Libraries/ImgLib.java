@@ -83,11 +83,11 @@ public class ImgLib {
         return JfileChooser.getSelectedFile().toPath().toString();
     }
 
-    public static Image getImageFrom(byte[] bytes, boolean isThumbnail) {
+    public static Image getImage(byte[] bytes, boolean isThumbnail) {
 
         try {
             ByteArrayInputStream byteAIS = new ByteArrayInputStream(bytes);
-            Iterator readers = ImageIO.getImageReadersByFormatName("jpeg");
+            Iterator readers = ImageIO.getImageReadersByFormatName("PNG");
             ImageReader reader = (ImageReader) readers.next();
 
             Object souce = byteAIS;
@@ -101,13 +101,15 @@ public class ImgLib {
             if (isThumbnail) {
                 param.setSourceSubsampling(4, 4, 0, 0);
             }
-
+            
+            
             return reader.read(0, param);
         } catch (IOException ex) {
             Logger.getLogger(ImgLib.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("----");
+            return null;
         }
         
-        return null;
     }
 
     public static BufferedImage toBufferedImage(Image image) {
@@ -164,6 +166,19 @@ public class ImgLib {
         return base;
     }
     
+    
+    public static Image ByteToImage(byte[] ResultOfDataBase){
+        
+        try {
+            
+            byte [] img = Base64.decode(ResultOfDataBase, 0, ResultOfDataBase.length);
+            return getImage(img, false);
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
     
     
 }

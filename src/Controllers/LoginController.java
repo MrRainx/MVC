@@ -1,16 +1,15 @@
 package Controllers;
 
-
-import Models.BD.PersonImp;
 import Models.BD.UsersImp;
 import Models.User;
 import Views.Desktop;
-import Views.Persons.Insert;
 import Views.Login;
 import Controllers.Libraries.Effects;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,9 +18,9 @@ import javax.swing.JOptionPane;
  */
 public class LoginController {
 
-    private UsersImp user;
+    private final UsersImp user;
 
-    private Login login;
+    private final Login login;
 
     public LoginController(UsersImp user, Login login) {
         this.user = user;
@@ -35,21 +34,14 @@ public class LoginController {
 
         this.login.setVisible(true);
         this.login.setLocationRelativeTo(null);
-        
+
         this.login.getBtnEnter().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 btnEnterOnMouseClicked(e);
             }
         });
-        /*
-        this.login.getTxtPassword().addCaretListener(e ->{
-            if (){
-                
-            }
-        });
-        */
-        
+
         Effects.exit(this.login.getBtnClose());
         Effects.minimize(this.login.getBtnMinimize(), this.login);
         Effects.moveableFrame(this.login);
@@ -58,41 +50,45 @@ public class LoginController {
     /*
         SUPPORT METHODS
      */
-
-
-    
- 
-    /*
+ /*
         EVENTS
      */
     private void btnEnterOnMouseClicked(MouseEvent e) {
-        
+
         user.setUserName(this.login.getTxtUsername().getText());
-        
+
         user.setPassword(this.login.getTxtPassword().getText());
-        
-        List<User>UsersList = user.SelectOne();
-        
-        if (UsersList.isEmpty()){
-            
+
+        List<User> UsersList = user.SelectOne();
+
+        if (UsersList.isEmpty()) {
+
             JOptionPane.showMessageDialog(null, "Incorrect User or Password");
-            
+
         } else {
-            
+
             user.setIdUser(UsersList.get(0).getIdUser());
             user.setName(UsersList.get(0).getName());
+            user.setPhoto(UsersList.get(0).getPhoto());
+
+            //JOptionPane.showMessageDialog(null, "YOU HAS BEEN LOGIN AS: "+UsersList.get(0).getName());
+            ImageIcon icon = new ImageIcon(user.getPhoto());
             
-            JOptionPane.showMessageDialog(null, "YOU HAS BEEN LOGIN AS: "+UsersList.get(0).getName());
-            
+            int option = JOptionPane.showConfirmDialog(null,
+                    user.getName(),
+                    "YOU HAS BEEN LOGIN AS: ",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    icon
+            );
+
             DesktopController desktop = new DesktopController(user, new Desktop());
             desktop.Init();
-            
+
             this.login.setVisible(false);
 
         }
-        
-        
-        
+
     }
 
 }

@@ -1,7 +1,6 @@
 package Models;
 
 import java.awt.Image;
-import java.io.FileInputStream;
 import java.io.Serializable;
 
 /**

@@ -2,21 +2,16 @@ package Models.BD;
 
 import Controllers.Libraries.ImgLib;
 import Models.BD.DAO.UserDAO;
-import Models.BD.ResoucerManager;
 import Models.User;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import org.postgresql.util.Base64;
 
 /**
  *
@@ -35,15 +30,17 @@ public class UsersImp extends User implements UserDAO {
     public boolean Insert() {
 
         String INSERT = "INSERT INTO "
-                + " users(idusuario,username,password,nombre,foto)"
+                + " usuarios(idusuario,username,password,nombre,foto)"
                 + " VALUES( "
                 + " " + getIdUser() + ","
                 + " '" + getUserName() + "',"
-                + " '" + getPassword() + "',"
+                + " set_byte( MD5('" + getPassword() + "')::bytea, 4,64),"
                 + " '" + getName() + "',"
                 + " '" + ImgLib.setImageInBase64(getPhoto()) + "'"
                 + ")";
-
+        
+        System.out.println(INSERT);
+        
         return ResoucerManager.Statement(INSERT) == null;
 
     }
@@ -51,7 +48,7 @@ public class UsersImp extends User implements UserDAO {
     @Override
     public List<User> SelectAll() {
 
-        String SELECT = "SELECT * FROM users";
+        String SELECT = "SELECT * FROM usuarios";
 
         List<User> List = new ArrayList<>();
 
@@ -77,11 +74,11 @@ public class UsersImp extends User implements UserDAO {
     @Override
     public List<User> SelectOne() {
         String SELECT = "SELECT  * "
-                + " FROM users "
+                + " FROM usuarios "
                 + " WHERE "
                 + " username = '" + getUserName() + "'"
                 + " AND "
-                + " password = '" + getPassword() + "'";
+                + " password = set_byte( MD5('" + getPassword() + "')::bytea, 4,64)";
 
         System.out.println("--->"+SELECT);
         
@@ -115,19 +112,24 @@ public class UsersImp extends User implements UserDAO {
 
     private User GetUserFromRs(ResultSet rs) {
         User user = new User();
+        byte [] bytePhoto; 
         try {
 
-            user.setIdUser(rs.getInt(1));
-            user.setUserName(rs.getString(2));
-            user.setPassword(rs.getString(3));
-            user.setName(rs.getString(4));
-
-            if (rs.getBinaryStream(5) != null) {
+            user.setIdUser(rs.getInt("idusuario"));
+            user.setUserName(rs.getString("username"));
+            user.setPassword(rs.getString("password"));
+            user.setName(rs.getString("nombre"));
+            bytePhoto = rs.getBytes("foto");
+            
+            
+            if (bytePhoto != null) {
                 
+                user.setPhoto(ImgLib.ByteToImage(bytePhoto));
                 
-                
+            } else {
+                user.setPhoto(null);
             }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(UsersImp.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -5,18 +5,8 @@ import Models.BD.UsersImp;
 import Views.Desktop;
 import Views.Users.AddUser;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URI;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLayeredPane;
@@ -74,12 +64,17 @@ public class AddUserController {
     /*
         SUPPORT METHODS
      */
- /*
+     /*
         EVENTS
      */
     private void btnAddOnMouseClicked(MouseEvent e) {
         
         
+        this.user.setUserName(this.view.getTxtUserName().getText());
+        this.user.setPassword(this.view.getTxtPassword().getText());
+        this.user.setName(this.view.getTxtNames().getText());
+        //Photo has been added in JFC
+        this.user.Insert();
         
         
     }
