@@ -37,6 +37,10 @@ public class DesktopController {
     public void Init() {
         this.desktop.setVisible(true);
         this.desktop.setLocationRelativeTo(null);
+        
+        
+        
+        
         this.desktop.getBtnUser().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -51,12 +55,28 @@ public class DesktopController {
             }
             
         });
+        
+        
+        
+        this.desktop.getBtnIngresarUsuario().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                btnAgregarUsuarioOnMouseClicked(e);
+            }
+            
+        });
+        
+        
+        
+        
+        
+        
     }
 
     /*
         SUPPORT METHODS
      */
- /*
+    /*
         EVENTS
      */
     private void btnUserOnMouseClicked(MouseEvent e) {
@@ -72,5 +92,15 @@ public class DesktopController {
         fin.Init();
                 
     }
+    
+    private void btnAgregarUsuarioOnMouseClicked(MouseEvent e){
+        
+        UsuarioControlador usurio = new UsuarioControlador
+        
+        
+    }
+    
+    
+    
 
 }

@@ -56,6 +56,14 @@ public class Desktop extends javax.swing.JFrame {
     public void setBtnUser(JMenu btnUser) {
         this.btnUser = btnUser;
     }
+
+    public JMenu getBtnIngresarUsuario() {
+        return btnIngresarUsuario;
+    }
+
+    public void setBtnIngresarUsuario(JMenu btnIngresarUsuario) {
+        this.btnIngresarUsuario = btnIngresarUsuario;
+    }
     
     
     
@@ -70,6 +78,7 @@ public class Desktop extends javax.swing.JFrame {
         NavBar = new javax.swing.JMenuBar();
         btnPersons = new javax.swing.JMenu();
         btnUser = new javax.swing.JMenu();
+        btnIngresarUsuario = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(960, 540));
@@ -93,6 +102,9 @@ public class Desktop extends javax.swing.JFrame {
         btnUser.setText("Users");
         NavBar.add(btnUser);
 
+        btnIngresarUsuario.setText("Agregar Usuario");
+        NavBar.add(btnIngresarUsuario);
+
         setJMenuBar(NavBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -113,6 +125,7 @@ public class Desktop extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar NavBar;
     private javax.swing.JDesktopPane bgDesktop;
+    private javax.swing.JMenu btnIngresarUsuario;
     private javax.swing.JMenu btnPersons;
     private javax.swing.JMenu btnUser;
     // End of variables declaration//GEN-END:variables

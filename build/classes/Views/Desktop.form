@@ -14,6 +14,11 @@
             <Property name="text" type="java.lang.String" value="Users"/>
           </Properties>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="btnIngresarUsuario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Agregar Usuario"/>
+          </Properties>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>

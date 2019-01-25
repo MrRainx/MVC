@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -93,8 +91,16 @@ public class UsuarioImp extends User implements UsuarioDAO {
     public boolean Editar(int Pk) {
         
         String UPDATE = " UPDATE usuarios SET "
+                + " idusuario = "+getIdUser()+","
+                + " username = '"+getUserName()+"', "
+                + " password = set_byte( MD5('" + getPassword() + "')::bytea, 4,64),"
+                + " nombre = '"+getName()+"',"
+                + " foto = '"+ImgLib.setImageInBase64( getPhoto() )+"' "
+                + " WHERE "
+                + " idusuario = "+Pk
                 + " ";
         
+        return ResourceManager.Statement(UPDATE) == null;
     }
 
     @Override

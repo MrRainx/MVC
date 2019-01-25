@@ -1,8 +1,9 @@
 package Controllers;
 
-import Models.BD.UsersImp;
+import Models.BD.UsuarioImp;
 import Views.Desktop;
 import Views.Users.AddUser;
+import javax.swing.JLayeredPane;
 
 /**
  *
@@ -10,11 +11,39 @@ import Views.Users.AddUser;
  */
 public class UsuarioControlador {
     
-    private Desktop desktop;
+    private Desktop desktop;//DONDE SE VA A VISUALIZAR
     
-    private AddUser view;
+    private AddUser view;//QUE SE VA A VISUALIZAR
     
-    private UsersImp usuario;
+    private UsuarioImp model; //CON LO QUE VAMOS A TRABAJAR
+
+    public UsuarioControlador(Desktop desktop, AddUser view, UsuarioImp model) {
+        this.desktop = desktop;
+        this.view = view;
+        this.model = model;
+    }
     
+    
+    /*
+        INITs
+    */
+    
+    public void Init(){
+        this.view.show();
+        this.desktop.getBgDesktop().add(view, JLayeredPane.MODAL_LAYER);
+        this.view.setTitle("Insertar Usuario en la Base de Datos");
+        
+        
+    }
+    
+    
+    /*
+        Metodos de Apoyo
+    */
+    
+    
+    /*
+        Eventos
+    */
     
 }
