@@ -1,10 +1,13 @@
 package Run;
 
 import Controllers.DesktopController;
+import Controllers.IngresarSistemaController;
 import Controllers.LoginController;
 import Models.BD.UsersImp;
+import Models.BD.UsuarioImp;
 import Models.User;
 import Views.Desktop;
+import Views.Ingresar;
 import Views.Login;
 import javax.swing.UIManager;
 
@@ -33,18 +36,18 @@ public class Run {
          */
 
         java.awt.EventQueue.invokeLater(() -> {
+
+            IngresarSistemaController ingresar = new IngresarSistemaController(new Ingresar(), new UsuarioImp());
+            
+            ingresar.Init();
+            
+            
+
             /*
-            LoginController login = new LoginController(new UsersImp(), new Login());
-            
-            login.Init();
-            */
-            
-            
             DesktopController desktop = new DesktopController(new User(), new Desktop());
             
             desktop.Init();
-            
-            
+             */
         });
 
     }

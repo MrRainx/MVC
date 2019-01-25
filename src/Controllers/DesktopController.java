@@ -6,13 +6,12 @@
 package Controllers;
 
 import Models.BD.PersonImp;
-import Models.BD.UsersImp;
+
 import Models.BD.UsuarioImp;
 import Models.User;
 import Views.Desktop;
 import Views.Persons.Find;
 import Views.Users.AddUser;
-import Views.Users.UsersView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -82,10 +81,10 @@ public class DesktopController {
         EVENTS
      */
     private void btnUserOnMouseClicked(MouseEvent e) {
-        
+        /*
         UsersController userList = new UsersController(new UsersImp(), new UsersView(), this.desktop);
         userList.Init();
-        
+        */
     }
     
     private void btnPersonOnMouseClicked(MouseEvent e){

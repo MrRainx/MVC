@@ -20,6 +20,7 @@ public class UsuarioImp extends User implements UsuarioDAO {
     }
 
     public UsuarioImp() {
+        
     }
 
     @Override
