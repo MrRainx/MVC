@@ -98,6 +98,10 @@ public class IngresarSistemaController {
             Icon icon = new ImageIcon(image.getImage().getScaledInstance(160, 90, Image.SCALE_DEFAULT));
             
             
+            
+
+            
+            
             JOptionPane.showMessageDialog(null, this.model.getName(),
                     "HA INICIADO SESION COMO: ",
                     JOptionPane.OK_OPTION,

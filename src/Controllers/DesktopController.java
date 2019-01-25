@@ -12,6 +12,7 @@ import Models.User;
 import Views.Desktop;
 import Views.Persons.Find;
 import Views.Users.AddUser;
+import Views.Users.UsersView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -42,7 +43,7 @@ public class DesktopController {
         
         
         
-        this.desktop.getBtnUser().addMouseListener(new MouseAdapter() {
+        this.desktop.getBtnListaUsuarios().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 btnUserOnMouseClicked(e);
@@ -81,10 +82,12 @@ public class DesktopController {
         EVENTS
      */
     private void btnUserOnMouseClicked(MouseEvent e) {
-        /*
-        UsersController userList = new UsersController(new UsersImp(), new UsersView(), this.desktop);
-        userList.Init();
-        */
+        
+        ListaUsuariosController lista = new ListaUsuariosController(this.desktop, new UsersView(), new UsuarioImp());
+        
+        lista.Init();
+        
+        
     }
     
     private void btnPersonOnMouseClicked(MouseEvent e){

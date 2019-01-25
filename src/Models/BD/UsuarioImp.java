@@ -89,7 +89,33 @@ public class UsuarioImp extends User implements UsuarioDAO {
         return Lista;
         
     }
+    
+    @Override
+    public List<User> SelectOne(int Pk) {
+        String SELECT = " SELECT * "
+                + " FROM usuarios "
+                + " WHERE "
+                + " idusuario = "+Pk;
+        
+        List<User> Lista = new ArrayList<>();
 
+        try {
+
+            ResultSet rs = ResourceManager.Query(SELECT);
+
+            while (rs.next()) {
+                Lista.add(getUsuarioFromRs(rs));
+            }
+            
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return Lista;
+        
+    }
+    
     @Override
     public boolean Editar(int Pk) {
         
@@ -144,5 +170,7 @@ public class UsuarioImp extends User implements UsuarioDAO {
         
         return user;
     }
+
+
 
 }

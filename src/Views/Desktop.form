@@ -11,7 +11,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="btnUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Users"/>
+            <Property name="text" type="java.lang.String" value="Lista Usuarios"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="btnIngresarUsuario">

@@ -49,7 +49,7 @@ public class Desktop extends javax.swing.JFrame {
         this.btnPersons = btnPersons;
     }
 
-    public JMenu getBtnUser() {
+    public JMenu getBtnListaUsuarios() {
         return btnUser;
     }
 
@@ -99,7 +99,7 @@ public class Desktop extends javax.swing.JFrame {
         btnPersons.setText("Persons");
         NavBar.add(btnPersons);
 
-        btnUser.setText("Users");
+        btnUser.setText("Lista Usuarios");
         NavBar.add(btnUser);
 
         btnIngresarUsuario.setText("Agregar Usuario");

@@ -15,6 +15,8 @@ public interface UsuarioDAO {
     
     public List<User>SelectOne();
     
+    public List<User>SelectOne(int Pk);
+    
     public boolean Editar(int Pk);
     
     public boolean Eliminar(int Pk);
