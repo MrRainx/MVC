@@ -7,9 +7,11 @@ package Controllers;
 
 import Models.BD.PersonImp;
 import Models.BD.UsersImp;
+import Models.BD.UsuarioImp;
 import Models.User;
 import Views.Desktop;
 import Views.Persons.Find;
+import Views.Users.AddUser;
 import Views.Users.UsersView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -95,7 +97,8 @@ public class DesktopController {
     
     private void btnAgregarUsuarioOnMouseClicked(MouseEvent e){
         
-        UsuarioControlador usurio = new UsuarioControlador
+        UsuarioControlador usuario = new UsuarioControlador(this.desktop, new AddUser(), new UsuarioImp());
+        usuario.Init();
         
         
     }

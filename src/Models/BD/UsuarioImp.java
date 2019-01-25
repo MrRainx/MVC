@@ -27,11 +27,13 @@ public class UsuarioImp extends User implements UsuarioDAO {
 
         String INSERT = "INSERT INTO "
                 + " usuarios (username,password,nombre,foto) "
+                + " VALUES("
                 + " '" + getUserName() + "', "
                 + " set_byte( MD5('" + getPassword() + "')::bytea, 4,64), "
                 + " '" + getName() + "', "
                 + " '" + ImgLib.setImageInBase64(getPhoto()) + "' "
                 + ")";
+        
 
         return ResourceManager.Statement(INSERT) == null;
 

@@ -61,7 +61,7 @@ public class ResourceManager {
 
         try {
             
-            System.out.println(Statement);
+            //System.out.println(Statement);
             
             conn = getConnection();
             stmt = conn.createStatement();
@@ -81,7 +81,7 @@ public class ResourceManager {
 
         try {
             
-            System.out.println(Query);
+            //System.out.println(Query);
             
             conn = getConnection();
             stmt = conn.createStatement();
