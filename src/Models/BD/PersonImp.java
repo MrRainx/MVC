@@ -37,7 +37,7 @@ public class PersonImp extends Person implements PersonDAO  {
                 + " " + getSalary() + ","
                 + " " + getQuota() + ")";
 
-        return ResoucerManager.Statement(INSERT) == null;
+        return ResourceManager.Statement(INSERT) == null;
     }
 
     @Override
@@ -50,14 +50,14 @@ public class PersonImp extends Person implements PersonDAO  {
 
         try {
 
-            ResultSet rs = ResoucerManager.Query(SELECT_ALL);
+            ResultSet rs = ResourceManager.Query(SELECT_ALL);
             
             while (rs.next()) {
                 PersonList.add(getPersonFromResulSet(rs));//FACTORIZADO
             }
             
             rs.close();
-            ResoucerManager.closeRs();
+            ResourceManager.closeRs();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -76,14 +76,14 @@ public class PersonImp extends Person implements PersonDAO  {
         
         try {
             
-            ResultSet rs = ResoucerManager.Query(SELECT_ONE);
+            ResultSet rs = ResourceManager.Query(SELECT_ONE);
             
             while (rs.next()) {
                 PersonList.add(getPersonFromResulSet(rs));//FACTORIZADO
             }
             
             rs.close();
-            ResoucerManager.closeRs();
+            ResourceManager.closeRs();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -104,14 +104,14 @@ public class PersonImp extends Person implements PersonDAO  {
                 + " cupo = " + getQuota() + " "
                 + " WHERE idpersona = '" + Pk + "'";
 
-        return ResoucerManager.Statement(UPDATE) == null;
+        return ResourceManager.Statement(UPDATE) == null;
 
     }
 
     @Override
     public boolean Delete(String Pk) {
         String DELETE = "DELETE FROM person WHERE idpersona= '" + Pk + "'";
-        return ResoucerManager.Statement(DELETE) == null;
+        return ResourceManager.Statement(DELETE) == null;
 
     }
 

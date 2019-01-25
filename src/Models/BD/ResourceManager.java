@@ -13,15 +13,15 @@ import java.util.logging.Logger;
  *
  * @author MrRainx
  */
-public class ResoucerManager {
+public class ResourceManager {
 
     private static final String JDBC_DRIVER = "org.postgresql.Driver";
 
-    private static final String JDBC_URL = "jdbc:postgresql://192.168.1.12:5432/MVC";
-    //private static final String JDBC_URL = "jdbc:postgresql://127.0.0.1:5432/MVC";
+    //private static final String JDBC_URL = "jdbc:postgresql://192.168.1.12:5432/MVC";
+    private static final String JDBC_URL = "jdbc:postgresql://127.0.0.1:5432/MVC";
     //private static final String JDBC_URL = "jdbc:postgresql://191.100.173.4:5432/MVC";
     private static final String JDBC_USER = "postgres";
-
+    
     private static final String JDBC_PASSWORD = "";
 
     private static Driver driver = null;
@@ -60,6 +60,9 @@ public class ResoucerManager {
     public static SQLException Statement(String Statement) {
 
         try {
+            
+            System.out.println(Statement);
+            
             conn = getConnection();
             stmt = conn.createStatement();
             stmt.execute(Statement);
@@ -77,6 +80,9 @@ public class ResoucerManager {
     public static ResultSet Query(String Query) {
 
         try {
+            
+            System.out.println(Query);
+            
             conn = getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery(Query);
@@ -92,9 +98,9 @@ public class ResoucerManager {
 
     public static void closeRs() {
         try {
-            ResoucerManager.rs.close();
+            ResourceManager.rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ResoucerManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ResourceManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

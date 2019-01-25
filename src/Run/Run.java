@@ -34,7 +34,9 @@ public class Run {
 
         java.awt.EventQueue.invokeLater(() -> {
             LoginController login = new LoginController(new UsersImp(), new Login());
+            
             login.Init();
+            
             /*
             DesktopController desktop = new DesktopController(new User(), new Desktop());
             

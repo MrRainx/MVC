@@ -95,9 +95,11 @@ public class AddUserController {
             ImageIcon image = ImgLib.JFCToImageIcon(findFile);
 
             if (image == null) {
+                
                 JOptionPane.showMessageDialog(this.desktop.getBgDesktop(), "NO ES UN ARCHIVO VALIDO");
+                
             } else {
-
+                
                 ImgLib.SetImageInLabel(image, this.view.getLbImage());
 
                 this.view.getBgFile().dispose();
@@ -105,7 +107,6 @@ public class AddUserController {
                 this.user.setPhoto(ImgLib.getImageFromFileInputStrem(ImgLib.getImgFileFromJFC(findFile)));
                 
                 this.view.getTxtFilePath().setText(ImgLib.getStringPathFromJFC(findFile));
-                
                 
             }
 

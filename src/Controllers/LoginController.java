@@ -5,6 +5,10 @@ import Models.User;
 import Views.Desktop;
 import Views.Login;
 import Controllers.Libraries.Effects;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -20,11 +24,11 @@ public class LoginController {
 
     private final UsersImp user;
 
-    private final Login login;
+    private final Login view;
 
     public LoginController(UsersImp user, Login login) {
         this.user = user;
-        this.login = login;
+        this.view = login;
     }
 
     /*
@@ -32,32 +36,38 @@ public class LoginController {
      */
     public void Init() {
 
-        this.login.setVisible(true);
-        this.login.setLocationRelativeTo(null);
+        this.view.setVisible(true);
+        this.view.setLocationRelativeTo(null);
 
-        this.login.getBtnEnter().addMouseListener(new MouseAdapter() {
+        this.view.getBtnEnter().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 btnEnterOnMouseClicked(e);
             }
         });
 
-        Effects.exit(this.login.getBtnClose());
-        Effects.minimize(this.login.getBtnMinimize(), this.login);
-        Effects.moveableFrame(this.login);
+        this.view.getTxtPassword().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                txtPasswordOnKeyRelessed(e);
+            }
+        });
+        
+        
+        Effects.Hover(this.view.getBtnEnter(), Color.orange, this.view.getBtnEnter().getBackground());
+        
+        Effects.exit(this.view.getBtnClose());
+        Effects.minimize(this.view.getBtnMinimize(), this.view);
+        Effects.moveableFrame(this.view);
     }
 
     /*
         SUPPORT METHODS
      */
- /*
-        EVENTS
-     */
-    private void btnEnterOnMouseClicked(MouseEvent e) {
+    private void Login() {
+        user.setUserName(this.view.getTxtUsername().getText());
 
-        user.setUserName(this.login.getTxtUsername().getText());
-
-        user.setPassword(this.login.getTxtPassword().getText());
+        user.setPassword(this.view.getTxtPassword().getText());
 
         List<User> UsersList = user.SelectOne();
 
@@ -71,22 +81,38 @@ public class LoginController {
             user.setName(UsersList.get(0).getName());
             user.setPhoto(UsersList.get(0).getPhoto());
 
-            //JOptionPane.showMessageDialog(null, "YOU HAS BEEN LOGIN AS: "+UsersList.get(0).getName());
-            ImageIcon icon = new ImageIcon(user.getPhoto());
-            
-            int option = JOptionPane.showConfirmDialog(null,
+            ImageIcon image = new ImageIcon(user.getPhoto());
+
+            Icon icon = new ImageIcon(image.getImage().getScaledInstance(160, 90, Image.SCALE_DEFAULT));
+
+            JOptionPane.showMessageDialog(null,
                     user.getName(),
                     "YOU HAS BEEN LOGIN AS: ",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
+                    JOptionPane.OK_OPTION,
                     icon
             );
 
             DesktopController desktop = new DesktopController(user, new Desktop());
             desktop.Init();
 
-            this.login.setVisible(false);
+            this.view.setVisible(false);
 
+        }
+    }
+
+    /*
+        EVENTS
+     */
+    private void btnEnterOnMouseClicked(MouseEvent e) {
+
+        Login();
+
+    }
+
+    private void txtPasswordOnKeyRelessed(KeyEvent e) {
+
+        if (e.getKeyCode() == 10) {
+            Login();
         }
 
     }

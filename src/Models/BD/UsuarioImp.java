@@ -1,7 +1,7 @@
 package Models.BD;
 
 import Controllers.Libraries.ImgLib;
-import Models.BD.DAO.UserDAO;
+import Models.BD.DAO.UsuarioDAO;
 import Models.User;
 import java.awt.Image;
 import java.sql.ResultSet;
@@ -15,27 +15,26 @@ import java.util.logging.Logger;
  *
  * @author MrRainx
  */
-public class UsersImp extends User implements UserDAO {
+public class UsuarioImp extends User implements UsuarioDAO {
 
-    public UsersImp(int IdUser, String UserName, String Password, String Name, Image Photo) {
+    public UsuarioImp(int IdUser, String UserName, String Password, String Name, Image Photo) {
         super(IdUser, UserName, Password, Name, Photo);
     }
 
-    public UsersImp() {
+    public UsuarioImp() {
     }
 
     @Override
-    public boolean Insert() {
+    public boolean insertar() {
 
         String INSERT = "INSERT INTO "
-                + " usuarios(username,password,nombre,foto)"
-                + " VALUES( "
-                + " '" + getUserName() + "',"
-                + " set_byte( MD5('" + getPassword() + "')::bytea, 4,64),"
-                + " '" + getName() + "',"
-                + " '" + ImgLib.setImageInBase64(getPhoto()) + "'"
+                + " usuarios (username,password,nombre,foto) "
+                + " '" + getUserName() + "', "
+                + " set_byte( MD5('" + getPassword() + "')::bytea, 4,64), "
+                + " '" + getName() + "', "
+                + " '" + ImgLib.setImageInBase64(getPhoto()) + "' "
                 + ")";
-        
+
         return ResourceManager.Statement(INSERT) == null;
 
     }
@@ -45,22 +44,21 @@ public class UsersImp extends User implements UserDAO {
 
         String SELECT = "SELECT * FROM usuarios";
 
-        List<User> List = new ArrayList<>();
+        List<User> Lista = new ArrayList<>();
 
         try {
+
             ResultSet rs = ResourceManager.Query(SELECT);
-            
+
             while (rs.next()) {
-                List.add(getUserFromRs(rs));
+                Lista.add(getUsuarioFromRs(rs));
             }
-
             rs.close();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return List;
 
+        return Lista;
     }
 
     @Override
@@ -72,46 +70,55 @@ public class UsersImp extends User implements UserDAO {
                 + " AND "
                 + " password = set_byte( MD5('" + getPassword() + "')::bytea, 4,64)";
 
-        List<User> List = new ArrayList<>();
+        List<User> Lista = new ArrayList<>();
 
         try {
+
             ResultSet rs = ResourceManager.Query(SELECT);
 
             while (rs.next()) {
-                List.add(getUserFromRs(rs));
+                Lista.add(getUsuarioFromRs(rs));
             }
-
+            
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return List;
-    }
-
-    @Override
-    public boolean Update(int Pk) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean Delete(int Pk) {
         
-        String DELETE = "DELETE FROM"
-                + " usuarios"
+        return Lista;
+        
+    }
+
+    @Override
+    public boolean Editar(int Pk) {
+        
+        String UPDATE = " UPDATE usuarios SET "
+                + " ";
+        
+    }
+
+    @Override
+    public boolean Eliminar(int Pk) {
+        
+        String DELETE = " DELETE FROM usuarios "
                 + " WHERE idusuario = "+Pk;
         
-        return ResourceManager.Statement(DELETE) == null;
-        
+        return  ResourceManager.Statement(DELETE) == null;
     }
 
-    private User getUserFromRs(ResultSet rs) {
+    private User getUsuarioFromRs(ResultSet rs) {
+
         User user = new User();
+
         byte[] bytePhoto;
+
         try {
 
             user.setIdUser(rs.getInt("idusuario"));
             user.setUserName(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setName(rs.getString("nombre"));
+
             bytePhoto = rs.getBytes("foto");
 
             if (bytePhoto != null) {
@@ -123,16 +130,10 @@ public class UsersImp extends User implements UserDAO {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(UsersImp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
+        
         return user;
     }
-    
-    /*
-    public static void main(String[] args) {
-        
-        UsersImp user = new UsersImp();
-        
-    }
-    */
+
 }

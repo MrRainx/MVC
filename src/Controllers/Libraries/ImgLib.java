@@ -30,6 +30,7 @@ import org.postgresql.util.Base64;
 public class ImgLib {
 
     public static ImageIcon JFCToImageIcon(JFileChooser findFile) {
+        
         ImageIcon image = null;
 
         try {
@@ -45,9 +46,7 @@ public class ImgLib {
                     return null;
 
                 } else {
-
                     image = new ImageIcon(bffImage);
-
                 }
 
             }
@@ -76,6 +75,7 @@ public class ImgLib {
 
         label.setSize(label.getWidth(), label.getHeight() - 2);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+
         label.setIcon(icon);
     }
 
@@ -101,18 +101,16 @@ public class ImgLib {
             if (isThumbnail) {
                 param.setSourceSubsampling(4, 4, 0, 0);
             }
-            
-            
+
             return reader.read(0, param);
         } catch (IOException ex) {
             Logger.getLogger(ImgLib.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("----");
             return null;
         }
-        
+
     }
 
-    public static BufferedImage toBufferedImage(Image image) {
+    private static BufferedImage toBufferedImage(Image image) {
         if (image instanceof BufferedImage) {
             return (BufferedImage) image;
         }
@@ -123,62 +121,56 @@ public class ImgLib {
         return buffImage;
 
     }
-    
-    
-    public static Image getImageFromFileInputStrem(FileInputStream file){
-        
+
+    public static Image getImageFromFileInputStrem(FileInputStream file) {
+
         BufferedImage bffImage = null;
         ImageIcon image = null;
         try {
             bffImage = ImageIO.read(file);
             image = new ImageIcon(bffImage);
-            
+
         } catch (IOException ex) {
             Logger.getLogger(ImgLib.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return image.getImage();
-        
-        
+
     }
-    
-    
-    public static String setImageInBase64(Image image){
-        
+
+    public static String setImageInBase64(Image image) {
+
         String base = null;
-        
+
         ByteArrayOutputStream byteAOS = new ByteArrayOutputStream();
-        
+
         try {
             BufferedImage img = toBufferedImage(image);
-            
+
             ImageIO.write(img, "PNG", byteAOS);
-            
+
             byte[] imagByte = byteAOS.toByteArray();
-            
+
             base = Base64.encodeBytes(imagByte);
-            
-            
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        
+
         return base;
     }
-    
-    
-    public static Image ByteToImage(byte[] ResultOfDataBase){
-        
+
+    public static Image ByteToImage(byte[] ResultOfDataBase) {
+
         try {
-            
-            byte [] img = Base64.decode(ResultOfDataBase, 0, ResultOfDataBase.length);
+
+            byte[] img = Base64.decode(ResultOfDataBase, 0, ResultOfDataBase.length);
             return getImage(img, false);
-            
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
-    
-    
+
 }

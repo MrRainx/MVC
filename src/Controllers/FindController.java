@@ -95,10 +95,12 @@ public class FindController {
     }
 
     private void InitEffects() {
-
-        Effects.colorChanger(this.view.getBtnNew(), new Color(68, 98, 145));
-        Effects.colorChanger(this.view.getBtnEdit(), new Color(68, 98, 145));
-        Effects.colorChanger(this.view.getBtnDelete(), new Color(68, 98, 145));
+        
+        Color colorBtns = this.view.getBtnDelete().getBackground();
+        
+        Effects.Hover(this.view.getBtnNew(), new Color(68, 98, 145), colorBtns);
+        Effects.Hover(this.view.getBtnEdit(), new Color(68, 98, 145), colorBtns);
+        Effects.Hover(this.view.getBtnDelete(), new Color(68, 98, 145), colorBtns);
 
 
     }

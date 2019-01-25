@@ -79,8 +79,8 @@ public class InsertController {
 
     private void InitEffects() {
 
-        Effects.colorChanger(this.view.getBtnInsert(), new Color(68, 98, 145));
-        Effects.colorChanger(this.view.getBtnClear(), new Color(68, 98, 145));
+        Effects.Hover(this.view.getBtnInsert(), new Color(68, 98, 145), this.view.getBtnInsert().getBackground());
+        Effects.Hover(this.view.getBtnClear(), new Color(68, 98, 145), this.view.getBtnClear().getBackground());
         
     }
 
