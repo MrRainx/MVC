@@ -5,16 +5,18 @@
  */
 package Controllers;
 
+import Controllers.Libraries.Effects;
+import Models.DAO.PersonDAO;
 import Models.BD.PersonImp;
-
-import Models.BD.UsuarioImp;
-import Models.User;
+import Models.BD.UsersImp;
+import Models.DTO.PersonDTO;
+import Models.DTO.UserDTO;
 import Views.Desktop;
-import Views.Persons.Find;
-import Views.Users.AddUser;
-import Views.Users.UsersView;
+import Views.Users.UserList;
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 /**
  *
@@ -22,25 +24,24 @@ import java.awt.event.MouseEvent;
  */
 public class DesktopController {
 
-    private User user;
+    private UsersImp user;
     private Desktop desktop;
 
-    public DesktopController(User user, Desktop desktop) {
+    public DesktopController(UsersImp user, Desktop desktop) {
         this.user = user;
         this.desktop = desktop;
+        InitEffects();
     }
-
-    public DesktopController() {
-    }
+    
 
     /*
         INIT
      */
     public void Init() {
+        
+        
         this.desktop.setVisible(true);
         this.desktop.setLocationRelativeTo(null);
-        
-        
         
         
         this.desktop.getBtnListaUsuarios().addMouseListener(new MouseAdapter() {
@@ -68,12 +69,18 @@ public class DesktopController {
             
         });
         
+    }
+    
+    
+    private void InitEffects(){
         
+        Color colorBase = desktop.getBtnPersons().getBackground();
         
-        
+        Effects.Hover(desktop.getBtnPersons(), Color.CYAN, colorBase);
         
         
     }
+    
 
     /*
         SUPPORT METHODS
@@ -83,7 +90,7 @@ public class DesktopController {
      */
     private void btnUserOnMouseClicked(MouseEvent e) {
         
-        ListaUsuariosController lista = new ListaUsuariosController(this.desktop, new UsersView(), new UsuarioImp());
+        UserListController lista = new UserListController(this.desktop, new UserList(), new UsersImp());
         
         lista.Init();
         
@@ -91,17 +98,12 @@ public class DesktopController {
     }
     
     private void btnPersonOnMouseClicked(MouseEvent e){
-        FindController fin = new FindController(new PersonImp(), new Find(), this.desktop);
-        
-        fin.Init();
-                
+        PersonListController.getInstance(desktop);
     }
     
     private void btnAgregarUsuarioOnMouseClicked(MouseEvent e){
         
-        UsuarioControlador usuario = new UsuarioControlador(this.desktop, new AddUser(), new UsuarioImp());
-        usuario.Init();
-        
+        PersonDAO dao = new PersonImp();
         
     }
     

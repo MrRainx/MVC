@@ -17,11 +17,11 @@ import javax.swing.JPanel;
  *
  * @author MrRainx
  */
-public class Insert extends javax.swing.JInternalFrame {
+public class PersonForm extends javax.swing.JInternalFrame {
     
     
     
-    public Insert() {
+    public PersonForm() {
         initComponents();
     }
     
@@ -56,6 +56,9 @@ public class Insert extends javax.swing.JInternalFrame {
         comboSex = new javax.swing.JComboBox<>();
         txtSalary = new javax.swing.JFormattedTextField();
         txtQuota = new javax.swing.JFormattedTextField();
+
+        setClosable(true);
+        setIconifiable(true);
 
         bgComponents.setBackground(new java.awt.Color(102, 102, 102));
         bgComponents.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Person Form", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -349,7 +352,7 @@ public class Insert extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 0, 1, 0);
         bgComponents.add(comboSex, gridBagConstraints);
 
-        txtSalary.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        txtSalary.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#####,00"))));
         txtSalary.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -362,7 +365,7 @@ public class Insert extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 0, 1, 0);
         bgComponents.add(txtSalary, gridBagConstraints);
 
-        txtQuota.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        txtQuota.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0"))));
         txtQuota.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;

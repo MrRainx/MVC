@@ -3,7 +3,7 @@ package Controllers;
 import Controllers.Libraries.ImgLib;
 import Models.BD.UsersImp;
 import Views.Desktop;
-import Views.Users.AddUser;
+import Views.Users.UserForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,13 +16,13 @@ import javax.swing.JOptionPane;
  *
  * @author MrRainx
  */
-public class AddUserController {
+public class UserFormController {
 
     private UsersImp user;
-    private AddUser view;
+    private UserForm view;
     private Desktop desktop;
 
-    public AddUserController(UsersImp user, AddUser view, Desktop desktop) {
+    public UserFormController(UsersImp user, UserForm view, Desktop desktop) {
         this.user = user;
         this.view = view;
         this.desktop = desktop;
@@ -64,6 +64,7 @@ public class AddUserController {
     /*
         SUPPORT METHODS
      */
+    
      /*
         EVENTS
      */

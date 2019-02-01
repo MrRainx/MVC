@@ -16,9 +16,9 @@ import javax.swing.JTextField;
  *
  * @author MrRainx
  */
-public class UsersView extends javax.swing.JInternalFrame {
+public class UserList extends javax.swing.JInternalFrame {
     
-    public UsersView() {
+    public UserList() {
         initComponents();
     }
     

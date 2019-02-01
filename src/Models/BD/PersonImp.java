@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import Models.BD.DAO.PersonDAO;
-import Models.Person;
+import Models.DAO.PersonDAO;
+import Models.DTO.PersonDTO;
 
 /**
  *
  * @author MrRainx
  */
-public class PersonImp extends Person implements PersonDAO  {
+public class PersonImp extends PersonDTO implements PersonDAO  {
 
     public PersonImp(String idPerson, String Names, String LastNames, LocalDate Birthdate, String Phone, String Sex, double Salary, int Quota) {
         super(idPerson, Names, LastNames, Birthdate, Phone, Sex, Salary, Quota);
@@ -41,12 +41,12 @@ public class PersonImp extends Person implements PersonDAO  {
     }
 
     @Override
-    public List<Person> SelectAll() {
+    public List<PersonDTO> SelectAll() {
         String SELECT_ALL = "SELECT idpersona,nombres, apellidos,fechanacimiento,telefono,sexo,salario,cupo "
                 + " FROM person "
                 + " ORDER BY idpersona";
 
-        List<Person> PersonList = new ArrayList<>();
+        List<PersonDTO> PersonList = new ArrayList<>();
 
         try {
 
@@ -65,14 +65,14 @@ public class PersonImp extends Person implements PersonDAO  {
     }
 
     @Override
-    public List<Person> SelectOne(String Aguja) {
+    public List<PersonDTO> SelectOne(String Aguja) {
         String SELECT_ONE = "SELECT idpersona,nombres, apellidos,fechanacimiento,telefono,sexo,salario,cupo "
                 + "FROM person "
                 + "WHERE idpersona like '%" + Aguja + "%'"
                 + " or nombres like '%" + Aguja + "%'"
                 + " or apellidos like '%" + Aguja + "%'";
         
-        List<Person> PersonList = new ArrayList<>();
+        List<PersonDTO> PersonList = new ArrayList<>();
         
         try {
             
@@ -118,8 +118,8 @@ public class PersonImp extends Person implements PersonDAO  {
     /*
         SUPPORT METHODS
      */
-    private Person getPersonFromResulSet(ResultSet rs) {
-        Person person = new Person();
+    private PersonDTO getPersonFromResulSet(ResultSet rs) {
+        PersonDTO person = new PersonDTO();
         try {
 
             person.setIdPerson(rs.getString(1));

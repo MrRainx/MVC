@@ -16,9 +16,9 @@ import javax.swing.JTextField;
  *
  * @author MrRainx
  */
-public class AddUser extends javax.swing.JInternalFrame {
+public class UserForm extends javax.swing.JInternalFrame {
     
-    public AddUser() {
+    public UserForm() {
         initComponents();
     }
 

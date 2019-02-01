@@ -1,4 +1,4 @@
-package Models;
+package Models.DTO;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -8,7 +8,7 @@ import java.util.Objects;
  *
  * @author MrRainx
  */
-public class Person implements Serializable{
+public class PersonDTO implements Serializable{
     
     private String idPerson;
     private String Names;
@@ -19,7 +19,7 @@ public class Person implements Serializable{
     private double Salary;
     private int Quota;
 
-    public Person(String idPerson, String Names, String LastNames, LocalDate Birthdate, String Phone, String Sex, double Salary, int Quota) {
+    public PersonDTO(String idPerson, String Names, String LastNames, LocalDate Birthdate, String Phone, String Sex, double Salary, int Quota) {
         this.idPerson = idPerson;
         this.Names = Names;
         this.LastNames = LastNames;
@@ -30,8 +30,22 @@ public class Person implements Serializable{
         this.Quota = Quota;
     }
 
-    public Person() {
+    public PersonDTO(PersonDTO obj){
+        this.idPerson = obj.getIdPerson();
+        this.Names = obj.getLastNames();
+        this.LastNames = obj.getLastNames();
+        this.Birthdate = obj.getBirthdate();
+        this.Phone = obj.getPhone();
+        this.Sex = obj.getSex();
+        this.Salary = obj.getSalary();
+        this.Quota = obj.getQuota();
     }
+    
+    public PersonDTO() {
+    
+    }
+    
+    
 
     public String getIdPerson() {
         return idPerson;
@@ -122,7 +136,7 @@ public class Person implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Person other = (Person) obj;
+        final PersonDTO other = (PersonDTO) obj;
         if (Double.doubleToLongBits(this.Salary) != Double.doubleToLongBits(other.Salary)) {
             return false;
         }

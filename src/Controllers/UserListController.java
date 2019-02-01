@@ -1,10 +1,10 @@
 package Controllers;
 
 import Controllers.Libraries.ImgLib;
-import Models.BD.UsuarioImp;
-import Models.User;
+import Models.BD.UsersImp;
+import Models.DTO.UserDTO;
 import Views.Desktop;
-import Views.Users.UsersView;
+import Views.Users.UserList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -16,19 +16,19 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MrRainx
  */
-public class ListaUsuariosController {
+public class UserListController {
 
     private Desktop desktop; //DONDE SE VA A MOSTRAR
 
-    private UsersView view; // QUE VAMOS A MOSTRAR
+    private UserList view; // QUE VAMOS A MOSTRAR
 
-    private UsuarioImp model; //CON QUE VAMOS A TRABAJAR
+    private UsersImp model; //CON QUE VAMOS A TRABAJAR
 
     private DefaultTableModel modeloTabla;
 
-    private List<User> Lista = null;
+    private List<UserDTO> Lista = null;
 
-    public ListaUsuariosController(Desktop desktop, UsersView view, UsuarioImp model) {
+    public UserListController(Desktop desktop, UserList view, UsersImp model) {
         this.desktop = desktop;
         this.view = view;
         this.model = model;
@@ -59,7 +59,7 @@ public class ListaUsuariosController {
         Lista = null;
         Lista = model.SelectAll();
 
-        for (User obj : Lista) {
+        for (UserDTO obj : Lista) {
             modeloTabla.addRow(new Object[]{
                 obj.getIdUser(),
                 obj.getUserName(),
@@ -79,7 +79,7 @@ public class ListaUsuariosController {
         try {
             int Pk = (Integer) this.view.getTabUsers().getValueAt(fila, 0);
 
-            for (User obj : Lista) {
+            for (UserDTO obj : Lista) {
 
                 if (obj.getIdUser() == Pk) {
 

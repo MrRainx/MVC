@@ -1,4 +1,4 @@
-package Models;
+package Models.DTO;
 
 import java.awt.Image;
 import java.io.Serializable;
@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @author MrRainx
  */
-public class User implements Serializable{
+public class UserDTO implements Serializable{
     
     private int IdUser;
     private String UserName;
@@ -15,7 +15,7 @@ public class User implements Serializable{
     private String Name;
     private Image Photo;
 
-    public User(int IdUser, String UserName, String Password, String Name, Image Photo) {
+    public UserDTO(int IdUser, String UserName, String Password, String Name, Image Photo) {
         this.IdUser = IdUser;
         this.UserName = UserName;
         this.Password = Password;
@@ -23,7 +23,7 @@ public class User implements Serializable{
         this.Photo = Photo;
     }
 
-    public User() {
+    public UserDTO() {
     }
 
     public int getIdUser() {

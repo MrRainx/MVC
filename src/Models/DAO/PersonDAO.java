@@ -1,7 +1,7 @@
-package Models.BD.DAO;
+package Models.DAO;
 
 import java.util.List;
-import Models.Person;
+import Models.DTO.PersonDTO;
 
 /**
  *
@@ -11,9 +11,9 @@ public interface PersonDAO {
     
     public boolean Insert();
     
-    public List<Person>SelectAll();
+    public List<PersonDTO>SelectAll();
     
-    public List<Person>SelectOne(String Aguja);
+    public List<PersonDTO>SelectOne(String Aguja);
     
     public boolean Update(String Pk);    
     

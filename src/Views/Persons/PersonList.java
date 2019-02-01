@@ -10,12 +10,13 @@ import javax.swing.JTextField;
  *
  * @author MrRainx
  */
-public class Find extends javax.swing.JInternalFrame {
+public class PersonList extends javax.swing.JInternalFrame {
 
 
-    public Find() {
+    public PersonList() {
         initComponents();
     }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -31,7 +32,9 @@ public class Find extends javax.swing.JInternalFrame {
         tabPersons = new javax.swing.JTable();
         lbState = new javax.swing.JLabel();
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
 
         bgComponents.setBackground(new java.awt.Color(102, 102, 102));
         bgComponents.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "List", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N

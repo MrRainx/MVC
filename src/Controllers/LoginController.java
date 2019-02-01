@@ -1,7 +1,7 @@
 package Controllers;
 
 import Models.BD.UsersImp;
-import Models.User;
+import Models.DTO.UserDTO;
 import Views.Desktop;
 import Views.Login;
 import Controllers.Libraries.Effects;
@@ -52,13 +52,13 @@ public class LoginController {
                 txtPasswordOnKeyRelessed(e);
             }
         });
-        
-        
+
         Effects.Hover(this.view.getBtnEnter(), Color.orange, this.view.getBtnEnter().getBackground());
-        
+
         Effects.exit(this.view.getBtnClose());
         Effects.minimize(this.view.getBtnMinimize(), this.view);
         Effects.moveableFrame(this.view);
+        
     }
 
     /*
@@ -69,7 +69,7 @@ public class LoginController {
 
         user.setPassword(this.view.getTxtPassword().getText());
 
-        List<User> UsersList = user.SelectOne();
+        List<UserDTO> UsersList = user.SelectOne();
 
         if (UsersList.isEmpty()) {
 
@@ -91,12 +91,9 @@ public class LoginController {
                     JOptionPane.OK_OPTION,
                     icon
             );
-
             DesktopController desktop = new DesktopController(user, new Desktop());
             desktop.Init();
-
             this.view.setVisible(false);
-
         }
     }
 
@@ -104,13 +101,10 @@ public class LoginController {
         EVENTS
      */
     private void btnEnterOnMouseClicked(MouseEvent e) {
-
         Login();
-
     }
 
     private void txtPasswordOnKeyRelessed(KeyEvent e) {
-
         if (e.getKeyCode() == 10) {
             Login();
         }

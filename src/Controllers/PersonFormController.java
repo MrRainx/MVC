@@ -1,6 +1,7 @@
 package Controllers;
 
 import Controllers.Libraries.Effects;
+import Controllers.Libraries.Validators;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -9,35 +10,45 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import Models.BD.PersonImp;
-import Views.Persons.Find;
-import Views.Persons.Insert;
+import Views.Desktop;
+import Views.Persons.PersonForm;
+import javax.swing.JLayeredPane;
 
 /**
  *
  * @author MrRainx
  */
-public class InsertController {
-
-    private PersonImp person;
-    private Insert view;
+public class PersonFormController {
+    
+    private Desktop desktop;
+    private PersonForm view;
+    private PersonImp model;
+    
+    
+    private static PersonFormController INSTANCE;
+    
 
     private String OldId;
 
-    public InsertController(PersonImp person, Insert insert) {
-        this.person = person;
-        this.view = insert;
+    private PersonFormController(Desktop desktop, PersonForm view, PersonImp model) {
+        this.desktop = desktop;
+        this.view = view;
+        this.model = model;
+        
         InitEffects();
-
+        
     }
+    
 
-    public InsertController() {
-    }
 
     /*
         INIT 
      */
     public void Init() {
-
+        
+        this.view.show();
+        this.desktop.getBgDesktop().add(this.view, JLayeredPane.MODAL_LAYER);
+        
         this.view.getBtnInsert().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -49,7 +60,6 @@ public class InsertController {
     }
 
     public void InitInsert() {
-        this.view.setVisible(true);
 
         this.view.getBtnClear().addMouseListener(new MouseAdapter() {
             @Override
@@ -63,17 +73,17 @@ public class InsertController {
 
     public void InitEdit() {
 
-        OldId = this.person.getIdPerson();
+        OldId = this.model.getIdPerson();
         this.view.getBtnInsert().setText("Edit");
 
-        this.view.getTxtID().setText(person.getIdPerson());
-        this.view.getTxtName().setText(person.getNames());
-        this.view.getTxtLastName().setText(person.getLastNames());
-        this.view.getjCalendar().setDate(Date.valueOf(person.getBirthdate()));
-        this.view.getTxtPhone().setText(person.getPhone());
-        this.view.getComboSex().setSelectedItem(person.getSex());
-        this.view.getTxtSalary().setText(Double.toString(person.getSalary()));
-        this.view.getTxtQuota().setText(Integer.toString(person.getQuota()));
+        this.view.getTxtID().setText(model.getIdPerson());
+        this.view.getTxtName().setText(model.getNames());
+        this.view.getTxtLastName().setText(model.getLastNames());
+        this.view.getjCalendar().setDate(Date.valueOf(model.getBirthdate()));
+        this.view.getTxtPhone().setText(model.getPhone());
+        this.view.getComboSex().setSelectedItem(model.getSex());
+        this.view.getTxtSalary().setText(Double.toString(model.getSalary()));
+        this.view.getTxtQuota().setText(Integer.toString(model.getQuota()));
 
     }
 
@@ -98,14 +108,14 @@ public class InsertController {
     }
 
     private void CreatePersonFromView() {
-        person.setIdPerson(this.view.getTxtID().getText());
-        person.setNames(this.view.getTxtName().getText());
-        person.setLastNames(this.view.getTxtLastName().getText());
-        person.setBirthdate(getDateFromTxt());
-        person.setPhone(this.view.getTxtPhone().getText());
-        person.setSex(this.view.getComboSex().getSelectedItem().toString());
-        person.setSalary(Double.parseDouble(this.view.getTxtSalary().getText()));
-        person.setQuota(Integer.parseInt(this.view.getTxtQuota().getText()));
+        model.setIdPerson(this.view.getTxtID().getText());
+        model.setNames(this.view.getTxtName().getText());
+        model.setLastNames(this.view.getTxtLastName().getText());
+        model.setBirthdate(getDateFromTxt());
+        model.setPhone(this.view.getTxtPhone().getText());
+        model.setSex(this.view.getComboSex().getSelectedItem().toString());
+        model.setSalary(Validators.getDoubleFromJFTXTfield(view.getTxtSalary().getText()));
+        model.setQuota(Integer.parseInt(this.view.getTxtQuota().getText()));
     }
 
     /*
@@ -117,30 +127,24 @@ public class InsertController {
             
             CreatePersonFromView();
             
-            person.Update(OldId);
+            model.Update(OldId);
 
             this.view.setVisible(false);
 
             JOptionPane.showMessageDialog(null, "PERSON HAS BEEN UPDATED");
-/*
-            FindController find = new FindController(new PersonImp(), new Find());
-            find.Init();
-*/
+            
         } else {
             
             CreatePersonFromView();
 
-            person.Insert();
+            model.Insert();
 
             this.view.setVisible(false);
 
             JOptionPane.showMessageDialog(null, "PERSON HAS BEEN ADDED");
             
-            /*
             
-            FindController find = new FindController(new PersonImp(), new Find());
-            find.Init();
-*/
+            
         }
 
     }
@@ -148,5 +152,20 @@ public class InsertController {
     private void btnClearOnMouseClicked(MouseEvent e) {
 
     }
+    
+    
+    //SINGLETON
+
+    public static PersonFormController getIntance(Desktop desktop){
+        
+        if (INSTANCE == null){
+            
+            INSTANCE = new PersonFormController(desktop,new PersonForm(),new PersonImp());
+        }
+        
+        return INSTANCE;
+        
+    }
+    
 
 }

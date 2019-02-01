@@ -1,6 +1,6 @@
 package Views;
 
-import Views.Users.UsersView;
+import Views.Users.UserList;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -10,20 +10,12 @@ import javax.swing.JMenuBar;
  * @author MrRainx
  */
 public class Desktop extends javax.swing.JFrame {
-
-    UsersView user = null;
+    
 
     public Desktop() {
         initComponents();
     }
-
-    public UsersView getUser() {
-        return user;
-    }
-
-    public void setUser(UsersView user) {
-        this.user = user;
-    }
+    
 
     public JMenuBar getNavBar() {
         return NavBar;

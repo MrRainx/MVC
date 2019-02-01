@@ -1,6 +1,6 @@
-package Models.BD.DAO;
+package Models.DAO;
 
-import Models.User;
+import Models.DTO.UserDTO;
 import java.util.List;
 
 /**
@@ -11,9 +11,9 @@ public interface UserDAO {
     
     public boolean Insert();
     
-    public List<User>SelectAll();
+    public List<UserDTO>SelectAll();
     
-    public List<User>SelectOne();
+    public List<UserDTO>SelectOne();
     
     public boolean Update(int Pk);    
     

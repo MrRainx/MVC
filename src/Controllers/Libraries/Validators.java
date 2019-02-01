@@ -202,6 +202,12 @@ public class Validators {
         System.out.println("Is Not RUC");
         return false;
     }
-
-
+    
+    
+    public static Double getDoubleFromJFTXTfield(String Number){
+        Number = Number.replace(",", "."); 
+        return Double.parseDouble(Number);
+    }
+    
+    
 }
