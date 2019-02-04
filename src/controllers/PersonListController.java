@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -29,8 +30,11 @@ public class PersonListController {
     
     
     private static PersonListController INSTACE;
-    private DefaultTableModel ModelT;
-
+    private static DefaultTableModel ModelT;
+    private List<PersonDTO> PersonList;
+    
+    
+    
     private PersonListController(Desktop desktop, PersonList view, PersonImp person) {
 
         PersonListController.desktop = desktop;
@@ -44,9 +48,9 @@ public class PersonListController {
      */
     public void Init() {
 
-        view.show();
-        desktop.getBgDesktop().add(view, JLayeredPane.DEFAULT_LAYER);
-
+        
+        view.setTitle("Person List");
+        
         ModelT = (DefaultTableModel) view.getTabPersons().getModel();
 
         view.getTxtFind().addKeyListener(new KeyAdapter() {
@@ -81,9 +85,30 @@ public class PersonListController {
 
         });
 
+        view.getBtnUpdate().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                btnUpdateOnMouseClicked(e);
+            }
+        });
+        
+        view.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                viewOnKeyRelessed(e);
+            }
+        });
+        
+        
+        
+        
         LoadTableAll();
         InitEffects();
 
+        
+        
+        view.show();
+        desktop.getBgDesktop().add(view, JLayeredPane.DEFAULT_LAYER);
     }
 
     private void InitEffects() {
@@ -93,7 +118,7 @@ public class PersonListController {
         Effects.Hover(view.getBtnNew(), new Color(68, 98, 145), colorBtns);
         Effects.Hover(view.getBtnEdit(), new Color(68, 98, 145), colorBtns);
         Effects.Hover(view.getBtnDelete(), new Color(68, 98, 145), colorBtns);
-
+        Effects.Hover(view.getBtnUpdate(), new Color(68, 98, 145), colorBtns);
     }
 
     /*
@@ -101,18 +126,15 @@ public class PersonListController {
      */
     private void LoadTableAll() {
 
-        List<PersonDTO> PersonList = model.SelectAll();
+        PersonList = model.SelectAll();
 
-        PersonList.forEach((obj) -> {
-            InsertRow(obj);
-
-            view.getLbState().setText(PersonList.size() + " rows");
-
-        });
-
+        PersonList.stream()
+                .forEach(PersonListController::InsertRow);
+        
+        view.getLbState().setText(PersonList.size() + " rows");
     }
 
-    private void InsertRow(PersonDTO obj) {
+    private static void InsertRow(PersonDTO obj) {
         ModelT.addRow(new Object[]{
             obj.getIdPerson(),
             obj.getNames(),
@@ -128,10 +150,11 @@ public class PersonListController {
 
     private void LoadOneToTable(String Aguja) {
 
-        List<PersonDTO> PersonList = model.SelectOne(Aguja);
-        PersonList.forEach((obj) -> {
-            InsertRow(obj);
-        });
+        PersonList = model.SelectOne(Aguja);
+        
+        PersonList.stream()
+                .forEach(PersonListController::InsertRow);
+        
         view.getLbState().setText(PersonList.size() + " rows");
 
     }
@@ -151,7 +174,7 @@ public class PersonListController {
 
     }
 
-    private PersonImp createPersonFromTable(int row) {
+    private PersonImp setPersonFromTable(int row) {
 
         return new PersonImp(
                 (String) view.getTabPersons().getValueAt(row, 0),
@@ -164,6 +187,8 @@ public class PersonListController {
                 (Integer) view.getTabPersons().getValueAt(row, 7)
         );
     }
+    
+    
 
     /*
         EVENTS
@@ -176,7 +201,7 @@ public class PersonListController {
 
     private void btnNewOnMaouseClicked(MouseEvent e) {
         
-        PersonFormController insert = PersonFormController.getIntance(this.desktop);
+        PersonFormController insert = PersonFormController.getIntance(desktop);
         insert.Init();
         insert.InitInsert();
         
@@ -212,7 +237,7 @@ public class PersonListController {
             ImageIcon icon = new ImageIcon("src/Views/Static/icons/Denied_48px.png");
 
             int option = JOptionPane.showConfirmDialog(null,
-                    createPersonFromTable(row),
+                    setPersonFromTable(row),
                     "ARE YOU SURE TO DELETE THIS PERSON?",
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
@@ -221,7 +246,7 @@ public class PersonListController {
 
             if (option == 0) {
 
-                String Aguja = createPersonFromTable(row).getIdPerson();
+                String Aguja = setPersonFromTable(row).getIdPerson();
 
                 model.Delete(Aguja);
 
@@ -239,7 +264,21 @@ public class PersonListController {
         }
 
     }
-
+    
+    private void btnUpdateOnMouseClicked(MouseEvent e){
+        ResetTable();
+        LoadTableAll();
+        view.getTxtFind().setText("");
+    }
+    
+    private void viewOnKeyRelessed(KeyEvent e){
+        
+        // 17 +  82
+        System.out.println(e.getKeyCode());
+    }
+    
+    
+    
     public static PersonListController getInstance(Desktop desktop) {
 
         if (INSTACE == null) {
@@ -250,15 +289,13 @@ public class PersonListController {
             try {
                 view.show();
                 PersonListController.desktop.getBgDesktop().add(view, JLayeredPane.MODAL_LAYER);
-                INSTACE.ResetTable();
-                INSTACE.LoadTableAll();
+                
+                
             } catch (IllegalArgumentException e) {
             }
-
         }
         return INSTACE;
-
     }
     
-
+    
 }
