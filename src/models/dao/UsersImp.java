@@ -18,7 +18,7 @@ public class UsersImp extends UserDTO implements UserDAO {
     public UsersImp(int IdUser, String UserName, String Password, String Name, Image Photo) {
         super(IdUser, UserName, Password, Name, Photo);
     }
-
+asdasdasd
     public UsersImp() {
         
     }
