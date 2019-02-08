@@ -1,4 +1,4 @@
-package Models.DAO;
+package models.interfaces;
 
 import java.util.List;
 import Models.DTO.PersonDTO;

@@ -1,7 +1,7 @@
 package Controllers;
 
 import Controllers.Libraries.ImgLib;
-import Models.BD.UsersImp;
+import models.dao.UsersImp;
 import Models.DTO.UserDTO;
 import Views.Desktop;
 import Views.Users.UserList;

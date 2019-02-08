@@ -9,7 +9,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
-import Models.BD.PersonImp;
+import models.dao.PersonImp;
 import Views.Desktop;
 import Views.Persons.PersonForm;
 import javax.swing.JLayeredPane;

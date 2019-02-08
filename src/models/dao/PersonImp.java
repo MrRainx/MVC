@@ -1,4 +1,4 @@
-package Models.BD;
+package models.dao;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import Models.DAO.PersonDAO;
+import models.interfaces.PersonDAO;
 import Models.DTO.PersonDTO;
 
 /**
@@ -44,7 +44,7 @@ public class PersonImp extends PersonDTO implements PersonDAO  {
     public List<PersonDTO> SelectAll() {
         String SELECT_ALL = "SELECT idpersona,nombres, apellidos,fechanacimiento,telefono,sexo,salario,cupo "
                 + " FROM person "
-                + " ORDER BY idpersona";
+                + " ORDER BY nombres";
 
         List<PersonDTO> PersonList = new ArrayList<>();
 
@@ -70,7 +70,8 @@ public class PersonImp extends PersonDTO implements PersonDAO  {
                 + "FROM person "
                 + "WHERE idpersona like '%" + Aguja + "%'"
                 + " or nombres like '%" + Aguja + "%'"
-                + " or apellidos like '%" + Aguja + "%'";
+                + " or apellidos like '%" + Aguja + "%' "
+                + " ORDER BY nombres";
         
         List<PersonDTO> PersonList = new ArrayList<>();
         

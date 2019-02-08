@@ -1,7 +1,7 @@
 package Run;
 
 import Controllers.LoginController;
-import Models.BD.UsersImp;
+import models.dao.UsersImp;
 import Views.Login;
 import javax.swing.UIManager;
 
@@ -9,7 +9,7 @@ import javax.swing.UIManager;
  *
  * @author MrRainx
  */
-public class Run {
+public class Start {
 
     public static void main(String[] args) {
 
@@ -23,8 +23,10 @@ public class Run {
             }
 
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Run.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Start.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        /*
+        
         /*
         
          */

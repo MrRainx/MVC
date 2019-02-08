@@ -1,7 +1,7 @@
 package Controllers;
 
 import Controllers.Libraries.ImgLib;
-import Models.BD.UsersImp;
+import models.dao.UsersImp;
 import Views.Desktop;
 import Views.Users.UserForm;
 import java.awt.event.ActionEvent;

@@ -1,7 +1,7 @@
 package Controllers;
 
 import Controllers.Libraries.Effects;
-import Models.BD.PersonImp;
+import models.dao.PersonImp;
 import Models.DTO.PersonDTO;
 import Views.Desktop;
 import Views.Persons.PersonList;
@@ -11,8 +11,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -26,31 +28,27 @@ public class PersonListController {
 
     private static Desktop desktop;
     private static PersonList view;
-    private static PersonImp model;    
-    
-    
+    private static PersonImp model;
+
     private static PersonListController INSTACE;
     private static DefaultTableModel ModelT;
     private List<PersonDTO> PersonList;
-    
-    
-    
+
     private PersonListController(Desktop desktop, PersonList view, PersonImp person) {
 
         PersonListController.desktop = desktop;
         PersonListController.view = view;
         model = person;
     }
-    
+
 
     /*
         INIT
      */
     public void Init() {
 
-        
         view.setTitle("Person List");
-        
+
         ModelT = (DefaultTableModel) view.getTabPersons().getModel();
 
         view.getTxtFind().addKeyListener(new KeyAdapter() {
@@ -58,7 +56,7 @@ public class PersonListController {
             public void keyReleased(KeyEvent e) {
                 TxtOnKeyRelessed(e);
             }
-            
+
         });
 
         view.getBtnNew().addMouseListener(new MouseAdapter() {
@@ -91,22 +89,10 @@ public class PersonListController {
                 btnUpdateOnMouseClicked(e);
             }
         });
-        
-        view.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                viewOnKeyRelessed(e);
-            }
-        });
-        
-        
-        
-        
+
         LoadTableAll();
         InitEffects();
 
-        
-        
         view.show();
         desktop.getBgDesktop().add(view, JLayeredPane.DEFAULT_LAYER);
     }
@@ -130,7 +116,7 @@ public class PersonListController {
 
         PersonList.stream()
                 .forEach(PersonListController::InsertRow);
-        
+
         view.getLbState().setText(PersonList.size() + " rows");
     }
 
@@ -151,29 +137,28 @@ public class PersonListController {
     private void LoadOneToTable(String Aguja) {
 
         PersonList = model.SelectOne(Aguja);
-        
+
         PersonList.stream()
                 .forEach(PersonListController::InsertRow);
-        
+
         view.getLbState().setText(PersonList.size() + " rows");
 
     }
-    
+
     private void ResetTable() {
         
-        int a = view.getTabPersons().getRowCount() - 1;
-        
-        try {
-            for (int i = a; i >= 0; i++) {
-                ModelT.removeRow(view.getTabPersons().getRowCount() - 1);
-            }
-
-        } catch (ArrayIndexOutOfBoundsException e) {
-
+        for (int i = 0; i < ModelT.getDataVector().size() + 1; i++) {
+            //ModelT.removeRow(0);
+        }
+        for (int i = 0; i < ModelT.getDataVector().size(); i++) {
+            
+            System.out.println(setPersonFromTable(i));
+            
+            //ModelT.removeRow(0);
         }
 
     }
-
+    
     private PersonImp setPersonFromTable(int row) {
 
         return new PersonImp(
@@ -187,8 +172,6 @@ public class PersonListController {
                 (Integer) view.getTabPersons().getValueAt(row, 7)
         );
     }
-    
-    
 
     /*
         EVENTS
@@ -200,11 +183,12 @@ public class PersonListController {
     }
 
     private void btnNewOnMaouseClicked(MouseEvent e) {
-        
+
         PersonFormController insert = PersonFormController.getIntance(desktop);
+
         insert.Init();
         insert.InitInsert();
-        
+
         view.setVisible(false);
     }
 
@@ -264,38 +248,28 @@ public class PersonListController {
         }
 
     }
-    
-    private void btnUpdateOnMouseClicked(MouseEvent e){
+
+    private void btnUpdateOnMouseClicked(MouseEvent e) {
         ResetTable();
-        LoadTableAll();
+        //LoadTableAll();
         view.getTxtFind().setText("");
     }
-    
-    private void viewOnKeyRelessed(KeyEvent e){
-        
-        // 17 +  82
-        System.out.println(e.getKeyCode());
-    }
-    
-    
-    
+
     public static PersonListController getInstance(Desktop desktop) {
 
         if (INSTACE == null) {
             INSTACE = new PersonListController(desktop, new PersonList(), new PersonImp());
             INSTACE.Init();
         } else {
-            
+
             try {
                 view.show();
                 PersonListController.desktop.getBgDesktop().add(view, JLayeredPane.MODAL_LAYER);
-                
-                
+
             } catch (IllegalArgumentException e) {
             }
         }
         return INSTACE;
     }
-    
-    
+
 }

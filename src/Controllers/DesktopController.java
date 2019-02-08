@@ -6,9 +6,9 @@
 package Controllers;
 
 import Controllers.Libraries.Effects;
-import Models.DAO.PersonDAO;
-import Models.BD.PersonImp;
-import Models.BD.UsersImp;
+import models.interfaces.PersonDAO;
+import models.dao.PersonImp;
+import models.dao.UsersImp;
 import Models.DTO.PersonDTO;
 import Models.DTO.UserDTO;
 import Views.Desktop;

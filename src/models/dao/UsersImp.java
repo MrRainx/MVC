@@ -1,7 +1,7 @@
-package Models.BD;
+package models.dao;
 
 import Controllers.Libraries.ImgLib;
-import Models.DAO.UserDAO;
+import models.interfaces.UserDAO;
 import Models.DTO.UserDTO;
 import java.awt.Image;
 import java.sql.ResultSet;

@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.BD.UsersImp;
+import models.dao.UsersImp;
 import Models.DTO.UserDTO;
 import Views.Desktop;
 import Views.Login;
