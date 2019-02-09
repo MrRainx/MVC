@@ -76,7 +76,7 @@ public class DesktopController {
         
         Color colorBase = desktop.getBtnPersons().getBackground();
         
-        Effects.Hover(desktop.getBtnPersons(), Color.CYAN, colorBase);
+        Effects.colorHover(desktop.getBtnPersons(), Color.CYAN, colorBase);
         
         
     }

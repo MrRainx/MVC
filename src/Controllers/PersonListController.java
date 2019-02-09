@@ -11,10 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -100,11 +97,13 @@ public class PersonListController {
     private void InitEffects() {
 
         Color colorBtns = view.getBtnDelete().getBackground();
-
-        Effects.Hover(view.getBtnNew(), new Color(68, 98, 145), colorBtns);
-        Effects.Hover(view.getBtnEdit(), new Color(68, 98, 145), colorBtns);
-        Effects.Hover(view.getBtnDelete(), new Color(68, 98, 145), colorBtns);
-        Effects.Hover(view.getBtnUpdate(), new Color(68, 98, 145), colorBtns);
+        Color enterColor = new Color(68, 98, 145);
+        
+        Effects.colorHover(view.getBtnNew(), enterColor , colorBtns);
+        Effects.colorHover(view.getBtnEdit(), enterColor, colorBtns);
+        Effects.colorHover(view.getBtnDelete(), enterColor, colorBtns);
+        Effects.colorHover(view.getBtnUpdate(), enterColor, colorBtns);
+        Effects.letterHover(view.getBtnDelete(), enterColor, colorBtns);
     }
 
     /*
@@ -271,5 +270,7 @@ public class PersonListController {
         }
         return INSTACE;
     }
-
+    
+    
+    
 }

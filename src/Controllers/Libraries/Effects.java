@@ -13,9 +13,10 @@ import javax.swing.JFrame;
  */
 public class Effects {
 
-    public static void Hover(JComponent button, Color colorEnter, Color colorExit) {
+    public static void colorHover(JComponent button, Color colorEnter, Color colorExit) {
 
         button.addMouseListener(new MouseAdapter() {
+
             @Override
             public void mouseEntered(MouseEvent e) {
                 button.setBackground(colorEnter);
@@ -24,6 +25,25 @@ public class Effects {
             @Override
             public void mouseExited(MouseEvent e) {
                 button.setBackground(colorExit);
+            }
+
+        });
+
+    }
+
+    public static void letterHover(JComponent button, Color colorEnter, Color colorExit) {
+        button.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                button.setForeground(new Color(255, 255, 255));
+                button.setFont(new java.awt.Font("Arial", 1, 16));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                button.setForeground(new Color(204, 204, 204));
+                button.setFont(new java.awt.Font("Arial", 1, 14));
             }
 
         });

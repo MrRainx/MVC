@@ -53,7 +53,7 @@ public class LoginController {
             }
         });
 
-        Effects.Hover(this.view.getBtnEnter(), Color.orange, this.view.getBtnEnter().getBackground());
+        Effects.colorHover(this.view.getBtnEnter(), Color.orange, this.view.getBtnEnter().getBackground());
 
         Effects.exit(this.view.getBtnClose());
         Effects.minimize(this.view.getBtnMinimize(), this.view);

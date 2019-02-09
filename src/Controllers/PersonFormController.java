@@ -90,8 +90,8 @@ public class PersonFormController {
 
     private void InitEffects() {
 
-        Effects.Hover(this.view.getBtnInsert(), new Color(68, 98, 145), this.view.getBtnInsert().getBackground());
-        Effects.Hover(this.view.getBtnClear(), new Color(68, 98, 145), this.view.getBtnClear().getBackground());
+        Effects.colorHover(this.view.getBtnInsert(), new Color(68, 98, 145), this.view.getBtnInsert().getBackground());
+        Effects.colorHover(this.view.getBtnClear(), new Color(68, 98, 145), this.view.getBtnClear().getBackground());
         
     }
 
