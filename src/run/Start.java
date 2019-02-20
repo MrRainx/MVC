@@ -1,8 +1,8 @@
 package Run;
 
-import Controllers.LoginController;
-import models.dao.UsersImp;
-import Views.Login;
+import controller.LoginCTR;
+import model.dao.UsersImp;
+import view.Login;
 import javax.swing.UIManager;
 
 /**
@@ -34,7 +34,7 @@ public class Start {
         java.awt.EventQueue.invokeLater(() -> {
             
             
-            LoginController login = new LoginController(new UsersImp(), new Login());
+            LoginCTR login = new LoginCTR(new UsersImp(), new Login());
             login.Init();
             
 
