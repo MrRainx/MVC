@@ -65,7 +65,7 @@ public class PersonImp extends PersonDTO implements PersonDAO {
     @Override
     public boolean update(String Pk) {
 
-        String UPDATE = "UPDATE person SET "
+        String UPDATE = "UPDATE persona SET "
                 + " idpersona = '" + getIdPerson() + "' ,"
                 + " nombres = '" + getNames() + "' ,"
                 + " apellidos = '" + getLastNames() + "' , "
@@ -82,7 +82,7 @@ public class PersonImp extends PersonDTO implements PersonDAO {
 
     @Override
     public boolean delete(String Pk) {
-        String DELETE = "DELETE FROM person WHERE idpersona= '" + Pk + "'";
+        String DELETE = "DELETE FROM persona WHERE idpersona= '" + Pk + "'";
         return ResourceManager.Statement(DELETE) == null;
 
     }

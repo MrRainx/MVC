@@ -54,7 +54,7 @@ public class PersonFormCTR {
 
         view.show();
         desktop.getBgDesktop().add(view);
-        
+
         try {
             view.setSelected(true);
         } catch (PropertyVetoException ex) {
@@ -108,6 +108,7 @@ public class PersonFormCTR {
     }
 
     private void setObjectFromForm() {
+        
         model.setIdPerson(view.getTxtID().getText());
         model.setNames(view.getTxtName().getText());
         model.setLastNames(view.getTxtLastName().getText());
@@ -124,27 +125,33 @@ public class PersonFormCTR {
     private void btnSaveActionPerformanceEdit(ActionEvent e) {
         setObjectFromForm();
 
-        model.update(Pk);
+        if (model.update(Pk)) {
 
-        view.dispose();
+            view.dispose();
 
-        JOptionPane.showMessageDialog(null, "PERSON HAS BEEN UPDATED");
+            JOptionPane.showMessageDialog(null, "PERSON HAS BEEN UPDATED");
+        } else {
+            JOptionPane.showMessageDialog(null, "THERE IS ALREADY AN ITEM WITH THAT PRIMARY KEY");
+        }
     }
 
     private void btnSaveActionPerformanceNew(ActionEvent e) {
         setObjectFromForm();
 
-        model.insert();
 
-        view.dispose();
+        if (model.insert()) {
 
-        JOptionPane.showMessageDialog(null, "PERSON HAS BEEN ADDED");
+            view.dispose();
+
+            JOptionPane.showMessageDialog(null, "PERSON HAS BEEN ADDED");
+        } else {
+            JOptionPane.showMessageDialog(null, "THERE IS ALREADY AN ITEM WITH THAT PRIMARY KEY");
+        }
+
     }
 
     private void btnClearActionPerformance(ActionEvent e) {
-        
-        
-        
+
     }
 
 }
