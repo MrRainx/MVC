@@ -78,7 +78,7 @@ public class Desktop extends javax.swing.JFrame {
         NavBar.add(btnPersons);
 
         btnUser.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnUser.setText("Lista Usuarios");
+        btnUser.setText("Users");
         btnUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         NavBar.add(btnUser);
 

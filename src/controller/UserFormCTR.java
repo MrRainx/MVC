@@ -1,15 +1,18 @@
 package controller;
 
+import controller.libraries.Effects;
 import controller.libraries.ImgLib;
+import java.awt.Color;
 import model.dao.UsersImp;
 import view.Desktop;
 import view.users.UserForm;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,72 +21,119 @@ import javax.swing.JOptionPane;
  */
 public class UserFormCTR {
 
-    private UsersImp user;
-    private UserForm view;
     private Desktop desktop;
+    private UserForm view;
+    private UsersImp model;
 
-    public UserFormCTR(UsersImp user, UserForm view, Desktop desktop) {
-        this.user = user;
-        this.view = view;
+    private String Function;
+
+    private int Pk = 0;
+
+    public UserFormCTR(Desktop desktop, UserForm view, UsersImp user, String Function) {
         this.desktop = desktop;
+        this.view = view;
+        this.model = user;
+        this.Function = Function;
     }
 
     /*
         INITs
      */
     public void Init() {
-        this.view.setVisible(true);
 
-        this.view.show();
-        this.desktop.getBgDesktop().remove(view);
-        this.desktop.getBgDesktop().add(view, JLayeredPane.MODAL_LAYER);
-        this.view.setAlignmentX(100);
+        view.setVisible(true);
 
-        this.view.getBtnAdd().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                btnAddOnMouseClicked(e);
-            }
+        InitEvents();
+        InitEffects();
 
-        });
+        view.show();
+        desktop.getBgDesktop().add(view);
 
-        this.view.getBtnFind().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                btnFindOnMouseClicked(e);
-            }
+        try {
+            view.setSelected(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(UserFormCTR.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        });
+        if (Function.equals("Edit")) {
+            setModelInForm();
 
-        this.view.getFileFinder().addActionListener((ActionEvent e) -> {
-            FileChosseActionPerformance(e);
-        });
+            Pk = model.getIdUser();
 
+        }
+
+    }
+
+    private void InitEvents() {
+        if (Function.equals("New")) {
+            view.getBtnSave().addActionListener(e -> btnAddActionPerformance(e));
+
+        } else {
+            view.getBtnSave().addActionListener(e -> btnEditActionPerformance(e));
+
+        }
+
+        view.getBtnFind().addActionListener(e -> btnFindOnActionPerformance(e));
+
+        view.getFileFinder().addActionListener(e -> FileChosseActionPerformance(e));
+    }
+
+    private void InitEffects() {
+        Color colorExit = view.getBtnSave().getBackground();
+        Color colorEnter = new Color(68, 98, 145);
+
+        Effects.colorHover(view.getBtnSave(), colorEnter, colorExit);
+        Effects.colorHover(view.getBtnFind(), colorEnter, colorExit);
     }
 
     /*
         SUPPORT METHODS
      */
-    
-     /*
-        EVENTS
-     */
-    private void btnAddOnMouseClicked(MouseEvent e) {
-        
-        
-        this.user.setUserName(this.view.getTxtUserName().getText());
-        this.user.setPassword(this.view.getTxtPassword().getText());
-        this.user.setName(this.view.getTxtNames().getText());
-        //Photo has been added in JFC
-        this.user.insert();
-        
-        
+    private void setModelInForm() {
+
+        view.getTxtUserName().setText(model.getUserName());
+        view.getTxtNames().setText(model.getName());
+
+        if (model.getPhoto() == null) {
+
+            view.getLbImage().setIcon(null);
+
+        } else {
+
+            ImageIcon image = new ImageIcon(model.getPhoto());
+
+            ImgLib.SetImageInLabel(image, view.getLbImage());
+
+        }
+
     }
 
-    private void btnFindOnMouseClicked(MouseEvent e) {
+    private void setObjectFromForm() {
+        model.setUserName(view.getTxtUserName().getText());
+        model.setPassword(view.getTxtPassword().getText());
+        model.setName(view.getTxtNames().getText());
+    }
 
-        this.view.getBgFile().setVisible(true);
-        this.view.getBgFile().setLocationRelativeTo(this.desktop);
+    /*
+        EVENTS
+     */
+    private void btnAddActionPerformance(ActionEvent e) {
+
+        setObjectFromForm();
+
+        if (model.insert()) {
+            JOptionPane.showMessageDialog(desktop, "USER HAS BEEN ADDED");
+            view.dispose();
+        } else {
+            JOptionPane.showMessageDialog(desktop, "FILL THE FORM CORRECTLY");
+        }
+
+    }
+
+    private void btnFindOnActionPerformance(ActionEvent e) {
+
+        view.getBgFile().setVisible(true);
+        view.getBgFile().setLocationRelativeTo(desktop);
 
     }
 
@@ -96,24 +146,37 @@ public class UserFormCTR {
             ImageIcon image = ImgLib.JFCToImageIcon(findFile);
 
             if (image == null) {
-                
-                JOptionPane.showMessageDialog(this.desktop.getBgDesktop(), "NO ES UN ARCHIVO VALIDO");
-                
+
+                JOptionPane.showMessageDialog(desktop.getBgDesktop(), "NO ES UN ARCHIVO VALIDO");
+
             } else {
-                
-                ImgLib.SetImageInLabel(image, this.view.getLbImage());
 
-                this.view.getBgFile().dispose();
+                ImgLib.SetImageInLabel(image, view.getLbImage());
 
-                this.user.setPhoto(ImgLib.getImageFromFileInputStrem(ImgLib.getImgFileFromJFC(findFile)));
-                
-                this.view.getTxtFilePath().setText(ImgLib.getStringPathFromJFC(findFile));
-                
+                view.getBgFile().dispose();
+
+                model.setPhoto(ImgLib.getImageFromJFC(findFile));
+
+                view.getTxtFilePath().setText(ImgLib.getStringPathFromJFC(findFile));
+
             }
 
         } else if (command.equals(JFileChooser.CANCEL_SELECTION)) {
-            this.view.getBgFile().dispose();
+            view.getBgFile().dispose();
         }
+    }
+
+    private void btnEditActionPerformance(ActionEvent e) {
+
+        setObjectFromForm();
+
+        if (model.update(Pk)) {
+            JOptionPane.showMessageDialog(desktop, "USER HAS BEEN UPDATED");
+            view.dispose();
+        } else {
+            JOptionPane.showMessageDialog(desktop, "FILL THE FORM CORRECTLY");
+        }
+
     }
 
 }

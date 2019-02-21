@@ -30,7 +30,7 @@ import org.postgresql.util.Base64;
 public class ImgLib {
 
     public static ImageIcon JFCToImageIcon(JFileChooser findFile) {
-        
+
         ImageIcon image = null;
 
         try {
@@ -61,7 +61,7 @@ public class ImgLib {
 
     }
 
-    public static FileInputStream getImgFileFromJFC(JFileChooser JFileChooser) {
+    public static FileInputStream getFileInputStreamFromJFC(JFileChooser JFileChooser) {
 
         try {
             return new FileInputStream(new File(JFileChooser.getSelectedFile().toPath().toUri()));
@@ -74,6 +74,7 @@ public class ImgLib {
     public static void SetImageInLabel(ImageIcon image, JLabel label) {
 
         label.setSize(label.getWidth(), label.getHeight() - 2);
+
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
 
         label.setIcon(icon);
@@ -108,6 +109,10 @@ public class ImgLib {
             return null;
         }
 
+    }
+
+    public static Image getImageFromJFC(JFileChooser jFileChooser) {
+        return getImageFromFileInputStrem(getFileInputStreamFromJFC(jFileChooser));
     }
 
     private static BufferedImage toBufferedImage(Image image) {

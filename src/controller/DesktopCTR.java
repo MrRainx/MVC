@@ -13,6 +13,7 @@ import model.dao.PersonImp;
 import model.dao.UsersImp;
 import view.Desktop;
 import view.persons.PersonList;
+import view.users.UserList;
 
 /**
  *
@@ -52,6 +53,13 @@ public class DesktopCTR {
 
         });
 
+        desktop.getBtnListaUsuarios().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                btnUsersOnMouseClicked(e);
+            }
+        });
+
     }
 
     private void InitEffects() {
@@ -73,6 +81,13 @@ public class DesktopCTR {
 
         PersonListCTR person = new PersonListCTR(desktop, new PersonList(), new PersonImp());
         person.Init();
+
+    }
+
+    private void btnUsersOnMouseClicked(MouseEvent e) {
+        
+        UserListCTR user = new UserListCTR(desktop, new UserList(), new UsersImp());
+        user.Init();
         
     }
 }

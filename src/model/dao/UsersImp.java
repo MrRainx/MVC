@@ -60,6 +60,15 @@ public class UsersImp extends UserDTO implements UserDAO {
         return selectSimple(SELECT);
     }
 
+    public List<UserDTO> selectWhereUsernameLIKE(String Aguja) {
+        String SELECT = "SELECT  * "
+                + " FROM usuarios "
+                + " WHERE "
+                + " username LIKE '%" + Aguja + "%'";
+
+        return selectSimple(SELECT);
+    }
+
     private List<UserDTO> selectSimple(String QUERY) {
         List<UserDTO> Lista = new ArrayList<>();
 

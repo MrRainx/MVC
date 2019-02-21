@@ -26,81 +26,43 @@ public class UserForm extends javax.swing.JInternalFrame {
         return bgContainer;
     }
 
-    public void setBgContainer(JPanel bgContainer) {
-        this.bgContainer = bgContainer;
-    }
-
     public JDialog getBgFile() {
         return bgFile;
-    }
-
-    public void setBgFile(JDialog bgFile) {
-        this.bgFile = bgFile;
-    }
-
-    public JButton getBtnAdd() {
-        return btnAdd;
-    }
-
-    public void setBtnAdd(JButton btnAdd) {
-        this.btnAdd = btnAdd;
     }
 
     public JButton getBtnFind() {
         return btnFind;
     }
 
-    public void setBtnFind(JButton btnFind) {
-        this.btnFind = btnFind;
+    public JButton getBtnSave() {
+        return btnSave;
     }
 
     public JFileChooser getFileFinder() {
         return fileFinder;
     }
 
-    public void setFileFinder(JFileChooser fileFinder) {
-        this.fileFinder = fileFinder;
-    }
-
     public JLabel getLbImage() {
         return lbImage;
-    }
-
-    public void setLbImage(JLabel lbImage) {
-        this.lbImage = lbImage;
     }
 
     public JTextField getTxtFilePath() {
         return txtFilePath;
     }
 
-    public void setTxtFilePath(JTextField txtFilePath) {
-        this.txtFilePath = txtFilePath;
-    }
-
     public JTextField getTxtNames() {
         return txtNames;
-    }
-
-    public void setTxtNames(JTextField txtNames) {
-        this.txtNames = txtNames;
     }
 
     public JTextField getTxtPassword() {
         return txtPassword;
     }
 
-    public void setTxtPassword(JTextField txtPassword) {
-        this.txtPassword = txtPassword;
-    }
-
     public JTextField getTxtUserName() {
         return txtUserName;
     }
-
-    public void setTxtUserName(JTextField txtUserName) {
-        this.txtUserName = txtUserName;
-    }
+    
+    
 
     
     
@@ -119,13 +81,13 @@ public class UserForm extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        lbImage = new javax.swing.JLabel();
-        btnAdd = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         txtPassword = new javax.swing.JTextField();
         txtUserName = new javax.swing.JTextField();
         txtNames = new javax.swing.JTextField();
         txtFilePath = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
+        lbImage = new javax.swing.JLabel();
 
         bgFile.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         bgFile.setMinimumSize(new java.awt.Dimension(623, 397));
@@ -168,12 +130,13 @@ public class UserForm extends javax.swing.JInternalFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Photo:");
 
-        lbImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-
-        btnAdd.setBackground(new java.awt.Color(0, 102, 102));
-        btnAdd.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdd.setText("Add User");
+        btnSave.setBackground(new java.awt.Color(0, 153, 153));
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
+        btnSave.setText("Save");
+        btnSave.setContentAreaFilled(false);
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSave.setOpaque(true);
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -183,75 +146,86 @@ public class UserForm extends javax.swing.JInternalFrame {
 
         txtFilePath.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        btnFind.setBackground(new java.awt.Color(0, 102, 102));
-        btnFind.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnFind.setBackground(new java.awt.Color(0, 153, 153));
+        btnFind.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnFind.setForeground(new java.awt.Color(255, 255, 255));
         btnFind.setText("Find Image");
+        btnFind.setContentAreaFilled(false);
+        btnFind.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFind.setOpaque(true);
+
+        lbImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         javax.swing.GroupLayout bgContainerLayout = new javax.swing.GroupLayout(bgContainer);
         bgContainer.setLayout(bgContainerLayout);
         bgContainerLayout.setHorizontalGroup(
             bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgContainerLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addGap(0, 0, 0)
-                .addComponent(txtNames, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bgContainerLayout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(0, 0, 0)
-                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bgContainerLayout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(jLabel3)
-                .addGap(0, 0, 0)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bgContainerLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel4)
-                .addGap(0, 0, 0)
-                .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnFind))
-            .addGroup(bgContainerLayout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(lbImage, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bgContainerLayout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(btnAdd))
+                .addContainerGap()
+                .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgContainerLayout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPassword))
+                    .addGroup(bgContainerLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNames))
+                    .addGroup(bgContainerLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUserName))
+                    .addGroup(bgContainerLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(bgContainerLayout.createSequentialGroup()
+                                .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(bgContainerLayout.createSequentialGroup()
+                                .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(163, 163, 163)))))
+                .addContainerGap())
         );
         bgContainerLayout.setVerticalGroup(
             bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgContainerLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNames, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(lbImage, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNames, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(bgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bgContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bgContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -261,8 +235,8 @@ public class UserForm extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgContainer;
     private javax.swing.JDialog bgFile;
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnSave;
     private javax.swing.JFileChooser fileFinder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

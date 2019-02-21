@@ -4,8 +4,6 @@ import controller.libraries.Effects;
 import controller.libraries.Validators;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -16,7 +14,6 @@ import javax.swing.JOptionPane;
 import model.dao.PersonImp;
 import view.Desktop;
 import view.persons.PersonForm;
-import javax.swing.JLayeredPane;
 
 /**
  *
@@ -91,8 +88,11 @@ public class PersonFormCTR {
 
     private void InitEffects() {
 
-        Effects.colorHover(view.getBtnSave(), new Color(68, 98, 145), view.getBtnSave().getBackground());
-        Effects.colorHover(view.getBtnClear(), new Color(68, 98, 145), view.getBtnClear().getBackground());
+        Color colorExit = view.getBtnSave().getBackground();
+        Color colorEnter = new Color(68, 98, 145);
+
+        Effects.colorHover(view.getBtnSave(), colorEnter, colorExit);
+        Effects.colorHover(view.getBtnClear(), colorEnter, colorExit);
 
     }
 
@@ -108,7 +108,7 @@ public class PersonFormCTR {
     }
 
     private void setObjectFromForm() {
-        
+
         model.setIdPerson(view.getTxtID().getText());
         model.setNames(view.getTxtName().getText());
         model.setLastNames(view.getTxtLastName().getText());
@@ -137,7 +137,6 @@ public class PersonFormCTR {
 
     private void btnSaveActionPerformanceNew(ActionEvent e) {
         setObjectFromForm();
-
 
         if (model.insert()) {
 
